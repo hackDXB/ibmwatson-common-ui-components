@@ -12,7 +12,7 @@ angular.module('ibmwatson-common-ui-components',[])
 
     .directive('watsonLoading', function() {
         return {
-            templateUrl: 'bower_components/ibmwatson-common-ui-loading/src/watsonLoading/watsonLoading.html',
+            templateUrl: 'bower_components/ibmwatson-common-ui-components/src/watsonLoading/watsonLoading.html',
             restrict: 'EA',
             replace: true,
             scope : {
