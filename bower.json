@@ -2,7 +2,7 @@
   "name": "ibmwatson-common-ui-components",
   "version": "0.0.0",
   "description": "A set of reusable angular directives. Should be used in any IBM Watson Tooling applications",
-  "main": "src/watsonLoading.directive.js",
+  "main": "src/angular-watson.js",
   "keywords": [
     "loading",
     "watson",
