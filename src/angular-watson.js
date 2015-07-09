@@ -4,7 +4,7 @@ angular.module('ibmwatson-common-ui-components',[])
 
     .directive('watsonFooter', function() {
         return {
-            templateUrl: 'bower_components/ibmwatson-common-ui-components/src/watsonFooter/watsonFooter.html',
+            template: '<footer class="footer ibm-footer"><ul class="list-inline ibm-list-inline"><li>&#169; 2015 International Business Machines</li></ul></footer>',
             restrict: 'EA',
             replace: true
         };
@@ -12,7 +12,7 @@ angular.module('ibmwatson-common-ui-components',[])
 
     .directive('watsonLoading', function() {
         return {
-            templateUrl: 'bower_components/ibmwatson-common-ui-components/src/watsonLoading/watsonLoading.html',
+            template: '<div class="ibm-loading"><div class="ibm-loading-img"></div><p class="ibm-loading-message" ng-if="loadingMessage">{{ loadingMessage }}</p></div>',
             restrict: 'EA',
             replace: true,
             scope : {
