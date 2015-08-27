@@ -90,6 +90,7 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
   .directive('watsonAlertsBar', function() {
     return {
       templateUrl: 'watsonAlerts/watsonAlertsBar.html',
+      controller: 'WatsonAlertsCtrl',
       scope: {
         alerts: '=alerts'
       },
@@ -97,6 +98,7 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
       replace: true
     };
   });
+
 // Source: src/watsonFooter/watsonFooter.js
 angular.module('ibmwatson-common-ui-components.watsonFooter', [])
   .directive('watsonFooter', function() {

@@ -12,6 +12,7 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
   .directive('watsonAlertsBar', function() {
     return {
       templateUrl: 'watsonAlerts/watsonAlertsBar.html',
+      controller: 'WatsonAlertsCtrl',
       scope: {
         alerts: '=alerts'
       },
