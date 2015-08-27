@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: alertsBar', function() {
+describe('Directive: watsonAlerts', function() {
   var $compile,
     $rootScope,
     testAlerts;
@@ -8,7 +8,7 @@ describe('Directive: alertsBar', function() {
   // Load the myApp module, which contains the directive
   beforeEach(module('ibmwatson-common-ui-components'));
 
-  beforeEach(module('watsonAlerts/watsonAlerts.html'));
+  beforeEach(module('watsonAlerts/watsonAlertsBar.html'));
 
   // Store references to $rootScope and $compile
   // so they are available to all tests in this describe block
@@ -45,7 +45,7 @@ describe('Directive: alertsBar', function() {
     scope.alerts = [];
 
     // Compile a piece of HTML containing the directive
-    var element = $compile('<watson-alerts alerts="alerts"></watson-alerts>')(scope);
+    var element = $compile('<watson-alerts-bar alerts="alerts"></watson-alerts-bar>')(scope);
 
     scope.$digest();
     // Check that the compiled element contains the templated content
@@ -60,7 +60,7 @@ describe('Directive: alertsBar', function() {
     scope.alerts = testAlerts.slice(0);
 
     // Compile a piece of HTML containing the directive
-    var element = $compile('<watson-alerts alerts="alerts"></watson-alerts>')(scope);
+    var element = $compile('<watson-alerts-bar alerts="alerts"></watson-alerts-bar>')(scope);
 
     scope.$digest();
 

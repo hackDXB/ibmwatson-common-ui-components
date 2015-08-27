@@ -1,12 +1,77 @@
 'use strict';
 angular.module("ibmwatson-common-ui-components", ["ibmwatson-common-ui-components.templates", "ibmwatson-common-ui-components.watsonAlerts","ibmwatson-common-ui-components.watsonFooter","ibmwatson-common-ui-components.watsonLoading"]);
-angular.module("ibmwatson-common-ui-components.templates", ["watsonAlerts/watsonAlerts.html","watsonFooter/watsonFooter.html","watsonLoading/watsonLoading.html"]);
-// Source: src/watsonAlerts/watsonAlerts.directive.js
-angular.module('ibmwatson-common-ui-components.watsonAlerts',[])
-  .directive('watsonAlerts', function() {
+angular.module("ibmwatson-common-ui-components.templates", ["watsonAlerts/watsonAlertsBar.html","watsonFooter/watsonFooter.html","watsonLoading/watsonLoading.html"]);
+// Source: src/watsonAlerts/watsonAlerts.js
+angular.module('ibmwatson-common-ui-components.watsonAlerts', []);
+// Source: src/watsonAlerts/watsonAlerts.service.js
+/**
+ * Service to manage a list of alerts to display to the user.
+ * Alerts are represented by an object with the following structure:
+ * {
+ *  id:'1234', // Optional: alert id or code
+ *  level: 'info', // Optional: One of success, info, warning, error. Default 'info'
+ *  title: 'Hello Stranger!', // Optional: A title for the alert message
+ *  text : 'Please log in'  // Required: Text for the alert message
+ *  link : 'hththt' // Optional: A link to put at the end of the message
+ *  linkText: '' // Optional: Text to put on the link. If link is supplied, defaults to 'Learn more'
+ * }
+ */
+angular.module('ibmwatson-common-ui-components.watsonAlerts')
+  .factory('watsonAlerts', ['$log', function init($log) {
+
+    var alerts = [];
+
+    /**
+     * Add an alert to the list of alerts
+     */
+    function add( /*Object*/ alert) {
+      $log.debug('add', alert, alerts);
+
+      alert.level = alert.level || 'info';
+
+      // Create a dismiss function to allow the alert to be removed
+      alert.dismiss = function() {
+        remove.apply(this, [alert]);
+      };
+
+      alerts.push(alert);
+
+      return alert;
+    }
+
+    /**
+     * Remove an alert from the list of alerts
+     */
+    function remove( /*Object*/ alert) {
+      $log.debug(remove, alert);
+      var index = alerts.indexOf(alert);
+      if (index >= 0) {
+        alerts.splice(index, 1);
+      }
+    }
+
+    /**
+     * Remove all current alerts
+     */
+    function clear() {
+      alerts.splice(0, alerts.length);
+    }
+
+    // Public API here
     return {
-      templateUrl: 'watsonAlerts/watsonAlerts.html',
-      scope:{
+      'alerts': alerts,
+      'add': add,
+      'remove': remove,
+      'clear': clear
+    };
+
+  }]);
+// Source: src/watsonAlerts/watsonAlertsBar.directive.js
+angular.module('ibmwatson-common-ui-components.watsonAlerts')
+  .directive('watsonAlertsBar', function() {
+    return {
+      templateUrl: 'watsonAlerts/watsonAlertsBar.html',
+      scope: {
         alerts: '=alerts'
       },
       restrict: 'E',
@@ -34,9 +99,9 @@ angular.module('ibmwatson-common-ui-components.watsonLoading', [])
       }
     };
   });
-// Source: src/watsonAlerts/watsonAlerts.html.js
-angular.module('watsonAlerts/watsonAlerts.html', []).run(['$templateCache', function($templateCache) {
-  $templateCache.put('watsonAlerts/watsonAlerts.html',
+// Source: src/watsonAlerts/watsonAlertsBar.html.js
+angular.module('watsonAlerts/watsonAlertsBar.html', []).run(['$templateCache', function($templateCache) {
+  $templateCache.put('watsonAlerts/watsonAlertsBar.html',
     '<div class="ibm-alert-bar"\n' +
     '	><div ng-repeat="alert in alerts" class="alert alert-{{alert.level}} alert-dismissible ibm-alert ibm-alert--{{alert.level}}" role="alert"\n' +
     '		><button ng-show="alert.dismissable" ng-click="alert.dismiss()" type="button" class="close ibm-alert__close" data-dismiss="alert" aria-label="Close"\n' +
