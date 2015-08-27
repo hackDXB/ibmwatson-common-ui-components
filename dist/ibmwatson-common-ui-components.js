@@ -17,57 +17,76 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts', []);
  * }
  */
 angular.module('ibmwatson-common-ui-components.watsonAlerts')
-  .factory('watsonAlerts', ['$log', function init($log) {
+    .factory('watsonAlerts', ['$log',
+        function init($log) {
 
-    var alerts = [];
+            var alerts = [];
 
-    /**
-     * Add an alert to the list of alerts
-     */
-    function add( /*Object*/ alert) {
-      $log.debug('add', alert, alerts);
+            /**
+             * Add an alert to the list of alerts
+             */
+            function add( /*Object*/ alert) {
+                $log.debug('add', alert, alerts);
 
-      alert.level = alert.level || 'info';
+                alert.level = alert.level || 'info';
 
-      // Create a dismiss function to allow the alert to be removed
-      alert.dismiss = function() {
-        remove.apply(this, [alert]);
-      };
+                console.log(alert.dismissable);
+                // check the optional 'dismissable' attribute and set to default 'true'
+                if (alert.dismissable === undefined) {
+                    alert.dismissable = true;
+                    console.log('true');
+                }
 
-      alerts.push(alert);
+                // Create a dismiss function to allow the alert to be removed
+                alert.dismiss = function() {
+                    remove.apply(this, [alert]);
+                };
 
-      return alert;
-    }
+                alerts.push(alert);
+                console.log(alerts);
 
-    /**
-     * Remove an alert from the list of alerts
-     */
-    function remove( /*Object*/ alert) {
-      $log.debug(remove, alert);
-      var index = alerts.indexOf(alert);
-      if (index >= 0) {
-        alerts.splice(index, 1);
-      }
-    }
+                return alert;
+            }
 
-    /**
-     * Remove all current alerts
-     */
-    function clear() {
-      alerts.splice(0, alerts.length);
-    }
+            /**
+             * Remove an alert from the list of alerts
+             */
+            function remove( /*Object*/ alert) {
+                $log.debug(remove, alert);
+                var index = alerts.indexOf(alert);
+                if (index >= 0) {
+                    alerts.splice(index, 1);
+                }
+            }
 
-    // Public API here
-    return {
-      'alerts': alerts,
-      'add': add,
-      'remove': remove,
-      'clear': clear
-    };
+            /**
+             * Remove all current alerts
+             */
+            function clear() {
+                alerts.splice(0, alerts.length);
+            }
 
-  }]);
+            // Public API here
+            return {
+                'alerts': alerts,
+                'add': add,
+                'remove': remove,
+                'clear': clear
+            };
+
+        }
+    ]);
+
 // Source: src/watsonAlerts/watsonAlertsBar.directive.js
 angular.module('ibmwatson-common-ui-components.watsonAlerts')
+  .controller('WatsonAlertsCtrl', ['$scope', 'watsonAlerts',
+        function($scope, watsonAlerts) {
+            // if the user has not overwritten the array using the alerts attribute, default to using the service
+            if (!$scope.alerts) {
+              $scope.alerts = watsonAlerts.alerts;
+            }
+        }
+    ])
   .directive('watsonAlertsBar', function() {
     return {
       templateUrl: 'watsonAlerts/watsonAlertsBar.html',
