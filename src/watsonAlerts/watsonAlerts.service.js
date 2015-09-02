@@ -1,3 +1,19 @@
+/**
+ * Copyright 2015 IBM Corp.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
 'use strict';
 
 /**
@@ -13,62 +29,62 @@
  * }
  */
 angular.module('ibmwatson-common-ui-components.watsonAlerts')
-    .factory('watsonAlerts', ['$log',
-        function init($log) {
+  .factory('watsonAlerts', ['$log', function init ($log) {
 
-            var alerts = [];
+    var LEVELS = [ 'success', 'info', 'warning', 'error' ];
 
-            /**
-             * Add an alert to the list of alerts
-             */
-            function add( /*Object*/ alert) {
-                $log.debug('add', alert, alerts);
+    var alerts = [];
 
-                alert.level = alert.level || 'info';
+    /**
+    * Add an alert to the list of alerts
+    */
+    function add( /*Object*/ alert) {
+      $log.debug('add', alert, alerts);
 
-                console.log(alert.dismissable);
-                // check the optional 'dismissable' attribute and set to default 'true'
-                if (alert.dismissable === undefined) {
-                    alert.dismissable = true;
-                    console.log('true');
-                }
+      alert.level = alert.level || LEVELS[1];
+      if (LEVELS.indexOf(alert.level) < 0) {
+        alert.level = LEVELS[1];
+      }
 
-                // Create a dismiss function to allow the alert to be removed
-                alert.dismiss = function() {
-                    remove.apply(this, [alert]);
-                };
+      // check the optional 'dismissable' attribute and set to default 'true'
+      if (alert.dismissable === undefined) {
+        alert.dismissable = true;
+      }
 
-                alerts.push(alert);
-                console.log(alerts);
+      // Create a dismiss function to allow the alert to be removed
+      alert.dismiss = function() {
+        remove.apply(this, [alert]);
+      };
 
-                return alert;
-            }
+      alerts.push(alert);
 
-            /**
-             * Remove an alert from the list of alerts
-             */
-            function remove( /*Object*/ alert) {
-                $log.debug(remove, alert);
-                var index = alerts.indexOf(alert);
-                if (index >= 0) {
-                    alerts.splice(index, 1);
-                }
-            }
+      return alert;
+    }
 
-            /**
-             * Remove all current alerts
-             */
-            function clear() {
-                alerts.splice(0, alerts.length);
-            }
+    /**
+    * Remove an alert from the list of alerts
+    */
+    function remove( /*Object*/ alert) {
+      $log.debug(remove, alert);
+      var index = alerts.indexOf(alert);
+      if (index >= 0) {
+        alerts.splice(index, 1);
+      }
+    }
 
-            // Public API here
-            return {
-                'alerts': alerts,
-                'add': add,
-                'remove': remove,
-                'clear': clear
-            };
+    /**
+    * Remove all current alerts
+    */
+    function clear() {
+      alerts.splice(0, alerts.length);
+    }
 
-        }
-    ]);
+    // Public API here
+    return {
+      'alerts': alerts,
+      'add': add,
+      'remove': remove,
+      'clear': clear
+    };
+
+  }]);
