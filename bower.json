@@ -12,7 +12,8 @@
   ],
   "authors": [
     "Joe Pavitt (joepavit@uk.ibm.com)",
-    "David George (david.george@uk.ibm.com)"
+    "David George (david.george@uk.ibm.com)",
+    "Caroline Church (caroline.church@uk.ibm.com"
   ],
   "license": "Apache-2.0",
   "ignore": [
@@ -23,7 +24,10 @@
     "tests"
   ],
   "dependencies":{
-    "angular": ">=1.2.*"
+    "angular": ">=1.2.*",
+    "angular-ui-router": "~0.2.10",
+    "bootstrap": "~3.1.1",
+    "angular-bootstrap": "~0.11.0"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*"

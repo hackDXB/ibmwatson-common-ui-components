@@ -16,9 +16,17 @@
 
 'use strict';
 
-angular.module('ibmwatson-common-ui-components',[
-    'ibmwatson-common-ui-components.watsonAlerts',
-    'ibmwatson-common-ui-components.watsonFooter',
-    'ibmwatson-common-ui-components.watsonLoading',
-    'ibmwatson-common-ui-components.watsonDropDown'
-    ]);
+angular.module('ibmwatson-common-ui-components.watsonDropDown', [])
+    .directive('watsonDropDown', function() {
+        return {
+            templateUrl: 'watsonDropDown/watsonDropDown.html',
+            restrict: 'E',
+            replace: true,
+            scope: {
+                menuItems: '=',
+                title: '=?',
+                myClass: '=?',
+                dropDownIcon: '=?'
+            }
+        };
+    });
