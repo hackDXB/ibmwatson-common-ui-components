@@ -16,9 +16,9 @@
 
             $scope.dropDownData = [
                 {name: 'cake',
-                 icon: 'ibm-icon--relationship'},
+                    icon: 'ibm-icon--relationship'},
                 {name: 'biscuits',
-                 icon: 'ibm-icon--satellitedish'},
+                    icon: 'ibm-icon--satellitedish'},
                 {name: 'cheese'}
             ];
 
@@ -26,6 +26,10 @@
 
             $scope.myClass = 'myClass';
 
+            $scope.myAction = function(menuItem) {
+                console.log('dropDownFunction');
+                $scope.dropDownClicked = 'menu item clicked ' + menuItem.name;
+            };
         }]);
 
 }());

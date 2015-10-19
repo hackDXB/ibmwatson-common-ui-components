@@ -6,7 +6,7 @@
     </button>
     <ul class="dropdown-menu ibm-dropdown__menu" aria-labelledby="dropdownMenu1">
         <li ng-repeat="menuItem in menuItems">
-            <span ng-class="menuItem.icon"></span><a  ng-click="menuItem.action">{{menuItem.name}}</a>
+            <span ng-class="menuItem.icon"></span><a  ng-click="action()(menuItem)">{{menuItem.name}}</a>
         </li>
     </ul>
 </div>

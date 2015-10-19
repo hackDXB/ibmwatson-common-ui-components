@@ -26,7 +26,8 @@ angular.module('ibmwatson-common-ui-components.watsonDropDown', [])
                 menuItems: '=',
                 title: '=?',
                 myClass: '=?',
-                dropDownIcon: '=?'
+                dropDownIcon: '=?',
+                action: '&?'
             }
         };
     });

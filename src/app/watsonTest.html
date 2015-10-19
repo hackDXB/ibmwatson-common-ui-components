@@ -2,7 +2,8 @@
     <div>
         <div class="row">
             <h1>Drop Down</h1>
-            <watson-drop-down menu-items="dropDownData" title="title" my-class="myClass"></watson-drop-down>
+            <watson-drop-down menu-items="dropDownData" title="title" my-class="myClass" action="myAction"></watson-drop-down>
+            <p>{{dropDownClicked}}</p>
         </div>
 
         <div class="row">
@@ -11,7 +12,7 @@
                 <li class="ibm-list__item">title &lt;optional&gt;: The name that appears on the drop down button </li>
                 <li class="ibm-list__item">drop-down-icon &lt;optional&gt;: The icon that appears to the right of the title </li>
                 <li class="ibm-list__item">myClass &lt;optional&gt;: Additional classes to add to the drop down button </li>
-                <li class="ibm-list__item">menuItems: list of items with the structure - item {name, icon, action} where action is the thing that happens when you click the menu item (uses ng-click) </li>
+                <li class="ibm-list__item">menuItems: list of items with the structure - item {name, icon} </li>
             </ul>
         </div>
     </div>
