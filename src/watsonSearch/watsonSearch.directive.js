@@ -14,7 +14,23 @@
  * limitations under the License.
  **/
 
-.myClass {
-  background-color: red;
-}
+'use strict';
 
+angular.module('ibmwatson-common-ui-components.watsonSearch', [])
+    .directive('watsonSearch', function() {
+        return {
+            templateUrl: 'watsonSearch/watsonSearch.html',
+            restrict: 'E',
+            replace: true,
+            scope: {
+                placeHolderText: '=?',
+                action: '&',
+                buttonText: '=?',
+                buttonIcon: '=',
+                searchText: '=',
+                textClass: '=?',
+                buttonClass: '=?'
+            }
+        };
+
+    });

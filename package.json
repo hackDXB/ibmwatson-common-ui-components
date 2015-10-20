@@ -5,6 +5,7 @@
   "main": "src/angular-watson.js",
   "private": true,
   "scripts": {
+    "start": "node src/app/app.js",
     "test": "karma start tests/karma.conf.js"
   },
   "repository": {
@@ -22,7 +23,8 @@
   ],
   "authors": [
     "Joe Pavitt (joepavit@uk.ibm.com)",
-    "David George (david.george@uk.ibm.com)"
+    "David George (david.george@uk.ibm.com)",
+    "Caroline Church (caroline.church@uk.ibm.com)"
   ],
   "devDependencies": {
     "grunt": "~0.4.4",
@@ -31,6 +33,9 @@
     "grunt-contrib-concat": "~0.4.0",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-connect": "^0.11.2",
+    "grunt-env": "^0.4.4",
     "grunt-html2js": "^0.3.4",
     "grunt-karma": "~0.8.2",
     "jasmine": "^2.2.1",
@@ -42,5 +47,8 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "phantomjs": "^1.9.16"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }

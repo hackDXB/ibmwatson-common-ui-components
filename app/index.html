@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
-    <!--<base href="/">-->
+    <base href="/">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -23,11 +23,7 @@
     <!-- build:css({.tmp,client}) app/app.css -->
     <!--<link rel="stylesheet" href="app/app.css">-->
     <!-- injector:css -->
-    <link href="css/ibm-fonts.scss" rel="stylesheet">
-    <link href="css/ibm-elements.css" rel="stylesheet">
-    <link href="css/ibm-colors.scss" rel="stylesheet">
-    <link href="css/ibm-patterns.css" rel="stylesheet">
-    <link href="app/watsonTest.scss" rel="stylesheet">
+    <link href="../bower_components/ibmwatson-common-ui-style/dist/css/ibm-watson.css" rel="stylesheet">
     <!-- endinjector -->
     <!-- endbuild -->
 
@@ -79,15 +75,7 @@
 
 <!-- injector:js -->
 <script src="app/watsonTest.js"></script>
-<script src="angular-watson.js"></script>
-<script src="watsonAlerts/watsonAlerts.js"></script>
-<script src="watsonAlerts/watsonAlerts.service.js"></script>
-<script src="watsonAlerts/watsonAlertsBar.directive.js"></script>
-<script src="watsonFooter/watsonFooter.js"></script>
-<script src="watsonLoading/watsonLoading.js"></script>
-<script src="watsonDropDown/watsonDropDown.directive.js"></script>
-
-
+<script src="../dist/ibmwatson-common-ui-components.js"></script>
 <!-- endinjector -->
 <!-- endbuild -->
 </body>

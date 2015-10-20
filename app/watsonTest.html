@@ -1,0 +1,43 @@
+<div class="container">
+    <div id="dropDown">
+        <div class="row">
+            <h1>Drop Down</h1>
+            <watson-drop-down menu-items="dropDownData.items" title="dropDownData.title" my-class="dropDownData.myClass" action="myDropDownAction"></watson-drop-down>
+            <p>{{dropDownClicked}}</p>
+        </div>
+        <div class="row">
+            <h2>Drop Down Options</h2>
+            <ul class="ibm-list">
+                <li class="ibm-list__item">title &lt;optional&gt;: The name that appears on the drop down button </li>
+                <li class="ibm-list__item">drop-down-icon &lt;optional&gt;: The icon that appears to the right of the title </li>
+                <li class="ibm-list__item">myClass &lt;optional&gt;: Additional classes to add to the drop down button </li>
+                <li class="ibm-list__item">action &lt;optional&gt; function to call when a menu item is clicked </li>
+                <li class="ibm-list__item">menuItems: list of items with the structure - item {name, icon} </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="search">
+        <h1>Search</h1>
+        <div class="row">
+            <div class="col-lg-6">
+                <watson-search place-holder-text="searchData.placeHolderText" button-text="searchData.buttonText" action="mySearchAction()" button-icon="searchData.buttonIcon" search-text="searchData.searchText" button-class="searchData.buttonClass" text-class="searchData.textClass"></watson-search>
+            </div>
+        </div>
+        <div class="row">
+            <p>{{searchClicked}}</p>
+        </div>
+        <div class="row">
+            <h2>Search Options</h2>
+            <ul class="ibm-list">
+                <li class="ibm-list__item">place-holder-text &lt;optional&gt;: The place holder text </li>
+                <li class="ibm-list__item">button-text &lt;optional&gt;: The text that appears on the button </li>
+                <li class="ibm-list__item">action: The function to call when the button is pressed </li>
+                <li class="ibm-list__item">button-icon &lt;optional&gt; The icon that appears on the button </li>
+                <li class="ibm-list__item">search-text: The variable that the text from the input box is stored in</li>
+                <li class="ibm-list__item">button-class: &lt;optional&gt; Additional classes to add to the button</li>
+                <li class="ibm-list__item">text-class: &lt;optional&gt; Additional classes to add to the input box</li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -10,6 +10,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   var foundModules = {};
 
@@ -145,6 +147,25 @@ module.exports = function(grunt) {
         src: ['<%= concat.dist.dest %>'],
         dest: '<%= dist %>/<%= pkg.name %>.min.js'
       }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 9000,
+          hostname: '*',
+          livereload:true,
+          base:['.','app']
+        }
+      }
+    },
+    watch: {
+      options: {
+        livereload:true
+      },
+      connect: {
+        files: ['**/*.html'],
+      }
+
     }
   });
 
@@ -180,5 +201,6 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'bower', 'html2js', 'jshint','karma', 'build']);
+  grunt.registerTask('serve', ['build','connect', 'watch']);
 
 };

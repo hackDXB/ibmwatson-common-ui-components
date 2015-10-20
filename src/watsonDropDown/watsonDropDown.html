@@ -1,12 +1,13 @@
 <div class="dropdown ibm-dropdown">
     <button class="btn btn-default ibm-dropdown__button" ng-class="myClass" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         <span ng-if="title">{{title}}</span>
-        <span ng-if!="dropdownIcon" class="ibm-icon--arrow-down"></span>
-        <span ng-if="dropdownIcon" ng-class="dropDownIcon"></span>
+        <span ng-if!="dropDownIcon" class="ibm-icon--arrow-down"></span>
+        <span ng-if="dropDownIcon" ng-class="dropDownIcon"></span>
     </button>
     <ul class="dropdown-menu ibm-dropdown__menu" aria-labelledby="dropdownMenu1">
         <li ng-repeat="menuItem in menuItems">
-            <span ng-class="menuItem.icon"></span><a  ng-click="action()(menuItem)">{{menuItem.name}}</a>
+            <span ng-class="menuItem.icon"><a  ng-click="action()(menuItem)">{{menuItem.name}}</a>
+            </span>
         </li>
     </ul>
 </div>
