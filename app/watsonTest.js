@@ -36,7 +36,6 @@
                 buttonText: 'Search!!!!',
                 buttonIcon: 'ibm-icon--search',
                 buttonClass: 'ibm-btn ibm-btn--primary',
-                //textClass: 'form-control'
             };
 
             $scope.mySearchAction = function() {

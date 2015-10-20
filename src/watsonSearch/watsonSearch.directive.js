@@ -26,7 +26,7 @@ angular.module('ibmwatson-common-ui-components.watsonSearch', [])
                 placeHolderText: '=?',
                 action: '&',
                 buttonText: '=?',
-                buttonIcon: '=',
+                buttonIcon: '=?',
                 searchText: '=',
                 textClass: '=?',
                 buttonClass: '=?'

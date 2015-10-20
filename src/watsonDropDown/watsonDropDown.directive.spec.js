@@ -63,6 +63,7 @@ describe('Directive: watsonDropDown', function() {
         var element = $compile('<watson-drop-down menu-items="dropDownData.items" title="title" my-class="myClass" action="myAction"></watson-drop-down>')(scope);
 
         scope.$digest();
+
         // Check that the compiled element contains the templated content
         expect(element.hasClass('dropdown ibm-dropdown')).toBe(true);
 
@@ -73,7 +74,6 @@ describe('Directive: watsonDropDown', function() {
         var scope = $rootScope.$new();
 
         scope.dropDownData = dropDownData;
-        scope.action = myAction;
         scope.text = dropDownClicked;
 
         // Compile a piece of HTML containing the directive
@@ -85,18 +85,6 @@ describe('Directive: watsonDropDown', function() {
         expect(element.html()).toContain(dropDownData.items[0].name);
         expect(element.html()).toContain(dropDownData.title);
         expect(element.html()).toContain(dropDownData.myClass);
-
-        var listItems = element.find('li');
-
-        console.log('num items ' + listItems[0]);
-
-        //listItems[0].find('a').click();
-
-        //expect(element.html()).toContain(dropDownClicked);
-
-
-
-
     });
 
 
