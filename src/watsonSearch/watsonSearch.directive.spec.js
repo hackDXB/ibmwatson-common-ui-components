@@ -16,18 +16,18 @@
 
 'use strict';
 
-describe('Directive: watsonDropDown', function() {
+describe('Directive: watsonSearch', function() {
     var $compile,
         $rootScope,
-        dropDownData,
-        myAction,
-        dropDownClicked;
+        searchData,
+        mySearchAction,
+        searchClicked;
 
 
     // Load the myApp module, which contains the directive
     beforeEach(module('ibmwatson-common-ui-components'));
 
-    beforeEach(module('watsonDropDown/watsonDropDown.html'));
+    beforeEach(module('watsonSearch/watsonSearch.html'));
 
     // Store references to $rootScope and $compile
     // so they are available to all tests in this describe block
@@ -36,20 +36,16 @@ describe('Directive: watsonDropDown', function() {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
 
-        myAction = function(menuItem) {
-            dropDownClicked = 'menu item clicked ' + menuItem.name;
+        mySearchAction = function() {
+            console.log('searchFunction') ;
+            searchClicked = 'search text was ' + searchData.searchText;
         };
 
-        dropDownData = {
-            items: [
-                {name: 'cake',
-                    icon: 'ibm-icon--relationship'},
-                {name: 'biscuits',
-                    icon: 'ibm-icon--satellitedish'},
-                {name: 'cheese'}
-            ],
-            title: 'food',
-            myClass: 'ibm-btn--primary'
+        searchData = {
+            placeHolderText: 'Enter search phrase here',
+            buttonText: 'Search!!!!',
+            buttonIcon: 'ibm-icon--search',
+            buttonClass: 'ibm-btn ibm-btn--primary'
         };
 
 
@@ -59,14 +55,12 @@ describe('Directive: watsonDropDown', function() {
 
         var scope = $rootScope.$new();
 
-
         // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-drop-down menu-items="dropDownData.items" title="title" my-class="myClass" action="myAction"></watson-drop-down>')(scope);
-
+        var element = $compile('<watson-search place-holder-text="searchData.placeHolderText" button-text="searchData.buttonText" action="mySearchAction()" button-icon="searchData.buttonIcon" search-text="searchData.searchText" button-class="searchData.buttonClass" text-class="searchData.textClass"></watson-search>')(scope);
         scope.$digest();
 
         // Check that the compiled element contains the templated content
-        expect(element.hasClass('dropdown ibm-dropdown')).toBe(true);
+        expect(element.hasClass('form-inline')).toBe(true);
 
     });
 
@@ -74,16 +68,16 @@ describe('Directive: watsonDropDown', function() {
 
         var scope = $rootScope.$new();
 
-        scope.dropDownData = dropDownData;
+        scope.searchData = searchData;
 
         // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-drop-down menu-items="dropDownData.items" title="dropDownData.title" my-class="dropDownData.myClass" action="myAction"></watson-drop-down>')(scope);
+        var element = $compile('<watson-search place-holder-text="searchData.placeHolderText" button-text="searchData.buttonText" action="mySearchAction()" button-icon="searchData.buttonIcon" search-text="searchData.searchText" button-class="searchData.buttonClass" text-class="searchData.textClass"></watson-search>')(scope);
 
         scope.$digest();
 
         // Check that the compiled element contains the templated content
-        expect(element.html()).toContain(dropDownData.items[0].name);
-        expect(element.html()).toContain(dropDownData.title);
+        expect(element.html()).toContain(searchData.buttonText);
+        expect(element.html()).toContain(searchData.placeHolderText);
     });
 
 

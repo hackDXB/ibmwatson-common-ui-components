@@ -16,18 +16,19 @@
 
 'use strict';
 
-describe('Directive: watsonDropDown', function() {
+describe('Directive: watsonFileUpload', function() {
     var $compile,
         $rootScope,
-        dropDownData,
-        myAction,
-        dropDownClicked;
+        options,
+        event,
+        file1,
+        file2;
 
 
     // Load the myApp module, which contains the directive
     beforeEach(module('ibmwatson-common-ui-components'));
 
-    beforeEach(module('watsonDropDown/watsonDropDown.html'));
+    beforeEach(module('watsonFileUpload/watsonFileUpload.html'));
 
     // Store references to $rootScope and $compile
     // so they are available to all tests in this describe block
@@ -36,21 +37,31 @@ describe('Directive: watsonDropDown', function() {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
 
-        myAction = function(menuItem) {
-            dropDownClicked = 'menu item clicked ' + menuItem.name;
+        options = {
+            large: 'true',
+            format: 'url'
         };
 
-        dropDownData = {
-            items: [
-                {name: 'cake',
-                    icon: 'ibm-icon--relationship'},
-                {name: 'biscuits',
-                    icon: 'ibm-icon--satellitedish'},
-                {name: 'cheese'}
-            ],
-            title: 'food',
-            myClass: 'ibm-btn--primary'
+        file1 = {
+            name: 'myFile.txt',
+            size: 32,
+            type: 'txt'
         };
+
+        file2 = {
+            name: 'myFile.txt',
+            size: 32,
+            type: 'txt'
+        };
+
+        event = {
+            target: {
+                files: [
+                   file1, file2
+                ]
+            }
+        };
+
 
 
     }));
@@ -59,14 +70,13 @@ describe('Directive: watsonDropDown', function() {
 
         var scope = $rootScope.$new();
 
-
         // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-drop-down menu-items="dropDownData.items" title="title" my-class="myClass" action="myAction"></watson-drop-down>')(scope);
+        var element = $compile('<watson-file-upload file="file"></watson-file-upload>')(scope);
 
         scope.$digest();
 
         // Check that the compiled element contains the templated content
-        expect(element.hasClass('dropdown ibm-dropdown')).toBe(true);
+        expect(element.hasClass('ibm-form__group')).toBe(true);
 
     });
 
@@ -74,18 +84,24 @@ describe('Directive: watsonDropDown', function() {
 
         var scope = $rootScope.$new();
 
-        scope.dropDownData = dropDownData;
+        scope.file = '';
+
+        scope.options = options;
 
         // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-drop-down menu-items="dropDownData.items" title="dropDownData.title" my-class="dropDownData.myClass" action="myAction"></watson-drop-down>')(scope);
+        var element = $compile('<div><watson-file-upload large="true" file="scope.file" format="options.format" ></watson-file-upload></div>')(scope);
 
         scope.$digest();
 
         // Check that the compiled element contains the templated content
-        expect(element.html()).toContain(dropDownData.items[0].name);
-        expect(element.html()).toContain(dropDownData.title);
+        expect(element.html()).toContain('ibm-file-upload__overlay--large');
+
+        element = $compile('<div><watson-file-upload file="scope.file" format="options.format" ></watson-file-upload></div>')(scope);
+        scope.$digest();
+
+        // Check that the compiled element contains the templated content
+        expect(element.html()).not.toContain('ibm-file-upload__overlay--large');
     });
-
-
 });
+
 

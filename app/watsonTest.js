@@ -23,7 +23,7 @@
                     {name: 'cheese'}
                 ],
                 title:'food',
-                myClass:'ibm-btn--error'
+                myClass:'ibm-btn ibm-btn--primary'
             };
 
             $scope.myDropDownAction = function(menuItem) {
@@ -43,7 +43,6 @@
                 $scope.searchClicked = 'search text was ' + $scope.searchData.searchText;
             };
 
-
-        }]);
-
+            $scope.format = "text";
+        }])
 }());

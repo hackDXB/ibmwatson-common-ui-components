@@ -18,8 +18,8 @@
     </div>
 
     <div id="search">
-        <h1>Search</h1>
         <div class="row">
+            <h1>Search</h1>
             <div class="col-lg-6">
                 <watson-search place-holder-text="searchData.placeHolderText" button-text="searchData.buttonText" action="mySearchAction()" button-icon="searchData.buttonIcon" search-text="searchData.searchText" button-class="searchData.buttonClass" text-class="searchData.textClass"></watson-search>
             </div>
@@ -37,6 +37,25 @@
                 <li class="ibm-list__item">search-text: The variable that the text from the input box is stored in</li>
                 <li class="ibm-list__item">button-class: &lt;optional&gt; Additional classes to add to the button</li>
                 <li class="ibm-list__item">text-class: &lt;optional&gt; Additional classes to add to the input box</li>
+            </ul>
+        </div>
+    </div>
+    <div id="fileUpload">
+        <div class="row">
+            <h1>File Upload</h1>
+            <watson-file-upload large="true" file="file" format="format" ></watson-file-upload>
+            <p>File name: {{file.details.name}} </p>
+            <p>File Content: {{file.data}}</p>
+        </div>
+        <div class="row">
+            <!--<watson-file-upload file="file"></watson-file-upload>-->
+        </div>
+        <div class="row">
+            <h2>File Upload Options</h2>
+            <ul class="ibm-list">
+                <li class="ibm-list__item">large &lt;optional&gt;: If set to true will show the large version of the file upload </li>
+                <li class="ibm-list__item">format &lt;optional&gt;: The format the file should be read in. Either "text", "url", or "binary" </li>
+                <li class="ibm-list__item">file: The variable that contains the uploaded file. "file.details" contains the meta data of the file e.g. "file.details.name". "file.data" contains the contents of this file </li>
             </ul>
         </div>
     </div>
