@@ -13,7 +13,10 @@
         })
 
         .controller('WatsonTestController', ['$scope', function init($scope ) {
-
+            /**
+             *
+             * DROP DOWN
+             */
             $scope.dropDownData = {
                 items: [
                     {name: 'cake',
@@ -31,6 +34,10 @@
                 $scope.dropDownClicked = 'menu item clicked ' + menuItem.name;
             };
 
+            /**
+             *
+             * SEARCH
+             */
             $scope.searchData = {
                 placeHolderText: 'Enter search phrase here',
                 buttonText: 'Search!!!!',
@@ -39,10 +46,32 @@
             };
 
             $scope.mySearchAction = function() {
-                console.log('searchFunction') ;
+                console.log('searchFunction');
                 $scope.searchClicked = 'search text was ' + $scope.searchData.searchText;
             };
 
-            $scope.format = "text";
+            /**
+             *
+             * FILE UPLOAD
+             */
+            $scope.upload =  {
+                format: 'text'
+            };
+
+            /**
+             * MODAL
+             */
+            $scope.modal =  {
+                type: 'success',
+                myModalId: 'myModalId',
+                title: 'Are you sure?',
+                okTitle: 'OK',
+                cancelTitle: 'Cancel'
+            };
+
+            $scope.myModalAction = function () {
+                console.log('modalFunction');
+                $scope.modalClicked = 'modal ok clicked';
+            }
         }])
 }());

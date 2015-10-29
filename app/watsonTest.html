@@ -43,12 +43,9 @@
     <div id="fileUpload">
         <div class="row">
             <h1>File Upload</h1>
-            <watson-file-upload large="true" file="file" format="format" ></watson-file-upload>
+            <watson-file-upload large="true" file="file" format="upload.format" ></watson-file-upload>
             <p>File name: {{file.details.name}} </p>
             <p>File Content: {{file.data}}</p>
-        </div>
-        <div class="row">
-            <!--<watson-file-upload file="file"></watson-file-upload>-->
         </div>
         <div class="row">
             <h2>File Upload Options</h2>
@@ -56,6 +53,29 @@
                 <li class="ibm-list__item">large &lt;optional&gt;: If set to true will show the large version of the file upload </li>
                 <li class="ibm-list__item">format &lt;optional&gt;: The format the file should be read in. Either "text", "url", or "binary" </li>
                 <li class="ibm-list__item">file: The variable that contains the uploaded file. "file.details" contains the meta data of the file e.g. "file.details.name". "file.data" contains the contents of this file </li>
+            </ul>
+        </div>
+    </div>
+    <div id="modal">
+        <div class="row">
+            <h1>Modal</h1>
+            <button type="button" class="btn btn-default ibm-btn ibm-btn--primary" data-toggle="modal" data-target="#{{modal.myModalId}}">
+                Open modal
+            </button>
+            <watson-modal type="modal.type" title="modal.title" action="myModalAction()" modal-Id="modal.myModalId" ok-title="modal.okTitle" cancel-title="modal.cancelTitle">
+                <div><p>Are you sure you want to take this action?</p></div>
+            </watson-modal>
+            {{modalClicked}}
+        </div>
+        <div class="row">
+            <h2>Modal Options</h2>
+            <ul class="ibm-list">
+                <li class="ibm-list__item">type &lt;optional&gt;: The type of modal to display set to "success", "error", "warning", "default"</li>
+                <li class="ibm-list__item">title: The title that should be shown on the modal</li>
+                <li class="ibm-list__item">id: The id for the modal (needed to be able to open it)</li>
+                <li class="ibm-list__item">action &lt;optional&gt;: The function to call when the modal is closed</li>
+                <li class="ibm-list__item">okTitle: The text to appear on the ok button</li>
+                <li class="ibm-list__item">cancelTitle &lt;optional&gt;: The function to call when the modal is closed</li>
             </ul>
         </div>
     </div>

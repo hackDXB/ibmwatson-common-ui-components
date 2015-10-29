@@ -18,6 +18,7 @@
 
 angular.module('ibmwatson-common-ui-components.watsonDropDown', [])
     .directive('watsonDropDown', function() {
+        var uniqueId = 0;
         return {
             templateUrl: 'watsonDropDown/watsonDropDown.html',
             restrict: 'E',
@@ -28,6 +29,11 @@ angular.module('ibmwatson-common-ui-components.watsonDropDown', [])
                 myClass: '=?',
                 dropDownIcon: '=?',
                 action: '&?'
+            },
+            link: function(scope,element) {
+                var item = 'watsonDropDown' + uniqueId++;
+                element.find('button').attr('id' , item);
+                element.find('ul').attr('aria-labelledby', item);
             }
         };
     });
