@@ -62,10 +62,10 @@
             <button type="button" class="btn btn-default ibm-btn ibm-btn--primary" data-toggle="modal" data-target="#{{modal.myModalId}}">
                 Open modal
             </button>
-            <watson-modal type="modal.type" title="modal.title" action="myModalAction()" modal-Id="modal.myModalId" ok-title="modal.okTitle" cancel-title="modal.cancelTitle">
+            <watson-modal type="modal.type" title="modal.title" action="myModalAction()" id="{{modal.myModalId}}" ok-title="modal.okTitle" cancel-title="modal.cancelTitle">
                 <div><p>Are you sure you want to take this action?</p></div>
             </watson-modal>
-            {{modalClicked}}
+            <p>{{modalClicked}}</p>
         </div>
         <div class="row">
             <h2>Modal Options</h2>

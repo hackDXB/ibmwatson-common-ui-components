@@ -32,28 +32,27 @@ angular.module('ibmwatson-common-ui-components.watsonModal', [])
                 cancelTitle: '=?',
                 action: '&'
             },
-            controller: function(){
-                this.SUCCESS = 'success';
-                this.ERROR = 'error';
-                this.DEFAULT = 'default';
-                this.WARNING = 'warning';
-            },
-            link: function(scope, element, attr, controller) {
-                var item = 'watsonModal' + uniqueId++;
-                element.find('h3').attr('id' , item);
-                element.attr('aria-labelledby', item);
+            link: function(scope, element) {
+                scope.uniqueId = 'watsonModal' + uniqueId++;
+
+                var TYPE = {
+                    SUCCESS: 'success',
+                    ERROR: 'error',
+                    DEFAULT: 'default',
+                    WARNING: 'warning'
+                };
 
                 switch (scope.type) {
-                    case controller.SUCCESS:
+                    case TYPE.SUCCESS:
                         scope.modalType = 'ibm-modal--success';
                         break;
-                    case controller.ERROR:
+                    case TYPE.ERROR:
                         scope.modalType = 'ibm-modal--error';
                         break;
-                    case controller.DEFAULT:
+                    case TYPE.DEFAULT:
                         scope.modalType = 'ibm-modal--default';
                         break;
-                    case controller.WARNING:
+                    case TYPE.WARNING:
                         scope.modalType = 'ibm-modal--warning';
                         break;
                     default:
@@ -61,12 +60,12 @@ angular.module('ibmwatson-common-ui-components.watsonModal', [])
                         break;
                 }
 
-                scope.okAction = function() {
+                var okButton = element.find('.okButton');
+
+                okButton.on('click', function() {
                     $(element).modal('hide');
                     scope.action();
-                };
-
-
+                });
             }
         };
     });

@@ -1,16 +1,16 @@
-<div class="modal fade ibm-modal" ng-class="modalType" id="{{modalId}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade ibm-modal" ng-class="modalType" tabindex="-1" role="dialog" aria-labelledby="{{::uniqueId}}">
     <div class="modal-dialog" role="document">
         <div class="modal-content ibm-modal-content">
             <div class="modal-header ibm-modal__header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ibm-icon--close-cancel-error" aria-hidden="true"></span></button>
-                <h3 class="modal-title" id="myModalLabel">{{title}}</h3>
+                <h3 class="modal-title" id="{{::uniqueId}}">{{title}}</h3>
             </div>
             <div class="modal-body ibm-modal__body">
                <div ng-transclude></div>
             </div>
             <div class="modal-footer ibm-modal__footer">
                 <button ng-if="cancelTitle" type="button" value="{{cancelTitle}}" class="btn ibm-btn ibm-btn--link" data-dismiss="modal">{{cancelTitle}}</button>
-                <button type="button" value="{{okTitle}}" class="btn ibm-btn ibm-btn--primary" ng-click="okAction()">{{okTitle}}</button>
+                <button type="button" value="{{okTitle}}" class="btn ibm-btn ibm-btn--primary okButton">{{okTitle}}</button>
             </div>
         </div>
     </div>

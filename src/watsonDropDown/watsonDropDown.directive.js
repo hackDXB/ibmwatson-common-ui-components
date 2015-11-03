@@ -30,10 +30,8 @@ angular.module('ibmwatson-common-ui-components.watsonDropDown', [])
                 dropDownIcon: '=?',
                 action: '&?'
             },
-            link: function(scope,element) {
-                var item = 'watsonDropDown' + uniqueId++;
-                element.find('button').attr('id' , item);
-                element.find('ul').attr('aria-labelledby', item);
+            link: function(scope) {
+                scope.uniqueId = 'watsonModal' + uniqueId++;
             }
         };
     });
