@@ -162,10 +162,13 @@ module.exports = function(grunt) {
       options: {
         livereload:true
       },
-      connect: {
-        files: ['**/*.html'],
+      app: {
+        files: ['app/**/*.html', 'app/**/*.html']
+      },
+      src: {
+        files: ['src/**/*.html', 'src/**/*.js'],
+        tasks: ['build']
       }
-
     }
   });
 
