@@ -163,7 +163,7 @@ module.exports = function(grunt) {
         livereload:true
       },
       app: {
-        files: ['app/**/*.html', 'app/**/*.html']
+        files: ['app/**/*.html', 'app/**/*.js']
       },
       src: {
         files: ['src/**/*.html', 'src/**/*.js'],
