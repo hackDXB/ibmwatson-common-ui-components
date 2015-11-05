@@ -43,9 +43,6 @@ describe('Directive: watsonSearch', function() {
 
         searchData = {
             placeHolderText: 'Enter search phrase here',
-            buttonText: 'Search!!!!',
-            buttonIcon: 'ibm-icon--search',
-            buttonClass: 'ibm-btn ibm-btn--primary'
         };
 
 
@@ -60,7 +57,7 @@ describe('Directive: watsonSearch', function() {
         scope.$digest();
 
         // Check that the compiled element contains the templated content
-        expect(element.hasClass('form-inline')).toBe(true);
+        expect(element.hasClass('form-group')).toBe(true);
 
     });
 
@@ -76,7 +73,6 @@ describe('Directive: watsonSearch', function() {
         scope.$digest();
 
         // Check that the compiled element contains the templated content
-        expect(element.html()).toContain(searchData.buttonText);
         expect(element.html()).toContain(searchData.placeHolderText);
     });
 

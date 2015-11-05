@@ -25,11 +25,18 @@ angular.module('ibmwatson-common-ui-components.watsonSearch', [])
             scope: {
                 placeHolderText: '=?',
                 action: '&',
-                buttonText: '=?',
-                buttonIcon: '=?',
-                searchText: '=',
-                textClass: '=?',
-                buttonClass: '=?'
+                searchText: '='
+            },
+            link: function(scope, element) {
+                element.bind('keydown keypress', function (event) {
+                    if(event.which === 13) {
+                        scope.$apply(function (){
+                            scope.action();
+                        });
+
+                        event.preventDefault();
+                    }
+                });
             }
         };
 

@@ -37,7 +37,7 @@ angular.module('ibmwatson-common-ui-components.watsonFileUpload', [])
                     $scope.file = file;
                 };
             },
-            link: function (scope) {
+            link: function (scope, element) {
                 scope.uniqueId = 'watsonModal' + uniqueId++;
 
                 if (scope.large === true) {
@@ -45,7 +45,7 @@ angular.module('ibmwatson-common-ui-components.watsonFileUpload', [])
                 }
 
                 scope.uploadFile = function () {
-                    $('#' + scope.uniqueId).click();
+                    element.find('.ibm-file-upload__input').click();
                 };
             }
         };
