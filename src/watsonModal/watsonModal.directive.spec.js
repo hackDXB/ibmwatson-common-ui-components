@@ -59,7 +59,7 @@ describe('Directive: watsonModal', function() {
         scope.$digest();
 
         // Check that the compiled element contains the templated content
-        expect(element.hasClass('ibm-modal')).toBe(true);
+        expect(element.hasClass('modal')).toBe(true);
 
     });
 
