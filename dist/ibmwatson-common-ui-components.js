@@ -223,7 +223,7 @@ angular.module('ibmwatson-common-ui-components.watsonFileUpload', [])
                     $scope.file = file;
                 };
             },
-            link: function (scope) {
+            link: function (scope, element) {
                 scope.uniqueId = 'watsonModal' + uniqueId++;
 
                 if (scope.large === true) {
@@ -231,7 +231,7 @@ angular.module('ibmwatson-common-ui-components.watsonFileUpload', [])
                 }
 
                 scope.uploadFile = function () {
-                    $('#' + scope.uniqueId).click();
+                    element.find('.ibm-file-upload__input').click();
                 };
             }
         };
@@ -494,11 +494,18 @@ angular.module('ibmwatson-common-ui-components.watsonSearch', [])
             scope: {
                 placeHolderText: '=?',
                 action: '&',
-                buttonText: '=?',
-                buttonIcon: '=?',
-                searchText: '=',
-                textClass: '=?',
-                buttonClass: '=?'
+                searchText: '='
+            },
+            link: function(scope, element) {
+                element.bind('keydown keypress', function (event) {
+                    if(event.which === 13) {
+                        scope.$apply(function (){
+                            scope.action();
+                        });
+
+                        event.preventDefault();
+                    }
+                });
             }
         };
 
@@ -522,15 +529,17 @@ angular.module('watsonAlerts/watsonAlertsBar.html', []).run(['$templateCache', f
 angular.module('watsonDropDown/watsonDropDown.html', []).run(['$templateCache', function($templateCache) {
   $templateCache.put('watsonDropDown/watsonDropDown.html',
     '<div class="dropdown ibm-dropdown">\n' +
-    '    <button class="btn btn-default" ng-class="myClass" type="button" id="{{::uniqueId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">\n' +
+    '    <button class="btn ibm-dropdown__button" ng-class="myClass" type="button" id="{{::uniqueId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">\n' +
     '        <span ng-if="title">{{title}}</span>\n' +
-    '        <span ng-if!="dropDownIcon" class="ibm-icon--arrow-down"></span>\n' +
+    '        <span ng-if!="dropDownIcon" class="ibm-glyph--caret-down_24"></span>\n' +
     '        <span ng-if="dropDownIcon" ng-class="dropDownIcon"></span>\n' +
     '    </button>\n' +
-    '    <ul class="dropdown-menu ibm-dropdown__menu" aria-labelledby="{{::uniqueId}}">\n' +
+    '    <ul class="dropdown-menu ibm-dropdown__menu ibm-dropdown__button--icon" ng-class="{\'ibm-dropdown__menu--icons\' : menuItems[0].icon}" aria-labelledby="{{::uniqueId}}">\n' +
     '        <li ng-repeat="menuItem in menuItems">\n' +
-    '            <span ng-class="menuItem.icon"><a  ng-click="action()(menuItem)">{{menuItem.name}}</a>\n' +
-    '            </span>\n' +
+    '            <a ng-click="action()(menuItem)">\n' +
+    '                <span ng-class="menuItem.icon"></span>\n' +
+    '                {{menuItem.name}}\n' +
+    '            </a>\n' +
     '        </li>\n' +
     '    </ul>\n' +
     '</div>\n' +
@@ -541,7 +550,7 @@ angular.module('watsonDropDown/watsonDropDown.html', []).run(['$templateCache', 
 angular.module('watsonFileUpload/watsonFileUpload.html', []).run(['$templateCache', function($templateCache) {
   $templateCache.put('watsonFileUpload/watsonFileUpload.html',
     '<div class="form-group ibm-form__group">\n' +
-    '    <input id="{{::uniqueId}}" class="form-control ibm-file-upload__input" type="file" fileread>\n' +
+    '    <input class="form-control ibm-file-upload__input" type="file" fileread>\n' +
     '    <div class="ibm-file-upload__overlay--wrapper" ng-class="largeClass" ng-click="uploadFile()" drag-drop>\n' +
     '        <div class="ibm-file-upload__overlay">\n' +
     '            <span class="ibm-icon--upload-export" aria-hidden="true"></span>\n' +
@@ -576,7 +585,7 @@ angular.module('watsonLoading/watsonLoading.html', []).run(['$templateCache', fu
 // Source: src/watsonModal/watsonModal.html.js
 angular.module('watsonModal/watsonModal.html', []).run(['$templateCache', function($templateCache) {
   $templateCache.put('watsonModal/watsonModal.html',
-    '<div class="modal fade ibm-modal" ng-class="modalType" tabindex="-1" role="dialog" aria-labelledby="{{::uniqueId}}">\n' +
+    '<div class="modal fade" ng-class="modalType" tabindex="-1" role="dialog" aria-labelledby="{{::uniqueId}}">\n' +
     '    <div class="modal-dialog" role="document">\n' +
     '        <div class="modal-content ibm-modal-content">\n' +
     '            <div class="modal-header ibm-modal__header">\n' +
@@ -599,14 +608,8 @@ angular.module('watsonModal/watsonModal.html', []).run(['$templateCache', functi
 // Source: src/watsonSearch/watsonSearch.html.js
 angular.module('watsonSearch/watsonSearch.html', []).run(['$templateCache', function($templateCache) {
   $templateCache.put('watsonSearch/watsonSearch.html',
-    '<div class="form-inline">\n' +
-    '    <div class="form-group">\n' +
-    '        <input class="form-control" type=text" ng-model="searchText" placeholder="{{placeHolderText}}" ng-class="textClass">\n' +
-    '        <button class="btn btn-default" ng-class="buttonClass" type="button" ng-click="action()">\n' +
-    '            {{buttonText}}\n' +
-    '            <span ng-class="buttonIcon"></span>\n' +
-    '        </button>\n' +
-    '    </div>\n' +
+    '<div class="form-group ibm-form__group">\n' +
+    '    <input type="text" class="form-control ibm-form__search" ng-model="searchText" placeholder="{{placeHolderText}}" ng-focus="this.placeholder=\'\'" ng-blur="this.placeholder=\'{{placeHolderText}}\'">\n' +
     '</div>\n' +
     '');
 }]);

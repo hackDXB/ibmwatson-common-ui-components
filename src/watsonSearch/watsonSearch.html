@@ -1,9 +1,3 @@
-<div class="form-inline">
-    <div class="form-group">
-        <input class="form-control" type=text" ng-model="searchText" placeholder="{{placeHolderText}}" ng-class="textClass">
-        <button class="btn btn-default" ng-class="buttonClass" type="button" ng-click="action()">
-            {{buttonText}}
-            <span ng-class="buttonIcon"></span>
-        </button>
-    </div>
+<div class="form-group ibm-form__group">
+    <input type="text" class="form-control ibm-form__search" ng-model="searchText" placeholder="{{placeHolderText}}" ng-focus="this.placeholder=''" ng-blur="this.placeholder='{{placeHolderText}}'">
 </div>

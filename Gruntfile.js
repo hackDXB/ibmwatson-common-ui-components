@@ -204,8 +204,5 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'bower', 'html2js', 'jshint','karma', 'build']);
-  grunt.registerTask('serve', ['build','connect', 'watch']);
-  grunt.registerTask('buildServe', ['clean', 'bower', 'html2js', 'jshint','karma', 'build','connect', 'watch']);
-
-
+  grunt.registerTask('serve', ['clean', 'bower', 'html2js', 'jshint','karma', 'build','connect', 'watch']);
 };
