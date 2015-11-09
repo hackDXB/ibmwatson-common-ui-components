@@ -162,8 +162,12 @@ module.exports = function(grunt) {
       options: {
         livereload:true
       },
-      connect: {
-        files: ['**/*.html'],
+      app: {
+        files: ['app/**/*.html', 'app/**/*.js']
+      },
+      src: {
+        files: ['src/**/*.html', 'src/**/*.js'],
+        tasks: ['build']
       }
 
     }
@@ -201,8 +205,5 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'bower', 'html2js', 'jshint','karma', 'build']);
-  grunt.registerTask('serve', ['build','connect', 'watch']);
-  grunt.registerTask('buildServe', ['clean', 'bower', 'html2js', 'jshint','karma', 'build','connect', 'watch']);
-
-
+  grunt.registerTask('serve', ['clean', 'bower', 'html2js', 'jshint','karma', 'build','connect', 'watch']);
 };
