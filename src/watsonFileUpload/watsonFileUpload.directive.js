@@ -18,6 +18,7 @@
 
 angular.module('ibmwatson-common-ui-components.watsonFileUpload', [])
     .directive('watsonFileUpload', function() {
+        var uniqueId = 0;
         return {
             templateUrl: 'watsonFileUpload/watsonFileUpload.html',
             restrict: 'E',
@@ -28,10 +29,6 @@ angular.module('ibmwatson-common-ui-components.watsonFileUpload', [])
                 format: '=?'
             },
             controller: function($scope) {
-                this.TEXT = 'text';
-                this.BINARY = 'binary';
-                this.URL = 'url';
-
                 this.getFormat = function() {
                     return $scope.format;
                 };
@@ -41,12 +38,14 @@ angular.module('ibmwatson-common-ui-components.watsonFileUpload', [])
                 };
             },
             link: function (scope) {
+                scope.uniqueId = 'watsonModal' + uniqueId++;
+
                 if (scope.large === true) {
                     scope.largeClass = 'ibm-file-upload__overlay--large';
                 }
 
                 scope.uploadFile = function () {
-                    $('#exampleInputFile').click();
+                    $('#' + scope.uniqueId).click();
                 };
             }
         };
@@ -57,6 +56,13 @@ angular.module('ibmwatson-common-ui-components.watsonFileUpload', [])
             restrict: 'A',
             require:'^watsonFileUpload',
             link: function (scope, element, attr, watsonFileUploadController) {
+
+                var FORMAT = {
+                    TEXT: 'text',
+                    BINARY: 'binary',
+                    URL: 'url'
+                };
+
                 element.bind('change', function (changeEvent) {
                     scope.$apply(function () {
                         var file = {};
@@ -72,13 +78,13 @@ angular.module('ibmwatson-common-ui-components.watsonFileUpload', [])
                         };
 
                         switch (watsonFileUploadController.getFormat()) {
-                            case watsonFileUploadController.TEXT:
+                            case FORMAT.TEXT:
                                 reader.readAsText(changeEvent.target.files[0]);
                                 break;
-                            case watsonFileUploadController.BINARY:
+                            case FORMAT.BINARY:
                                 reader.readAsBinaryString(changeEvent.target.files[0]);
                                 break;
-                            case watsonFileUploadController.URL:
+                            case FORMAT.URL:
                                 reader.readAsDataURL(changeEvent.target.files[0]);
                                 break;
                             default:

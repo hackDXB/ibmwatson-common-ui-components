@@ -18,6 +18,7 @@
 
 angular.module('ibmwatson-common-ui-components.watsonDropDown', [])
     .directive('watsonDropDown', function() {
+        var uniqueId = 0;
         return {
             templateUrl: 'watsonDropDown/watsonDropDown.html',
             restrict: 'E',
@@ -28,6 +29,9 @@ angular.module('ibmwatson-common-ui-components.watsonDropDown', [])
                 myClass: '=?',
                 dropDownIcon: '=?',
                 action: '&?'
+            },
+            link: function(scope) {
+                scope.uniqueId = 'watsonModal' + uniqueId++;
             }
         };
     });
