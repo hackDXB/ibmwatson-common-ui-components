@@ -74,13 +74,6 @@
                 console.log('modalFunction');
                 $scope.modalClicked = 'modal ok clicked';
             };
-            /**
-             *
-             * FILE UPLOAD
-             */
-            $scope.upload =  {
-                format: 'text'
-            };
 
 
             /**
