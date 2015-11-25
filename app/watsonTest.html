@@ -79,4 +79,36 @@
             </ul>
         </div>
     </div>
+    <!--
+    Commented out as the loading image has been removed from the style guide
+     <div id="Loading">
+         <div class="row">
+            <h1>Loading</h1>
+             <watson-loading loading-message="loadingMessage"></watson-loading>
+         </div>
+         <div class="row">
+             <ul class="ibm-list">
+                 <li class="ibm-list__item">loadingMessage &lt;optional&gt;: The message to display while loading </li>
+             </ul>
+         </div>
+     </div>-->
+    <div id="Alert">
+        <div class="row">
+            <h1>Alerts</h1>
+            <watson-alerts-bar></watson-alerts-bar>
+            <watson-alerts-bar alerts="alerts"></watson-alerts-bar>
+        </div>
+        <div class="row">
+            <h2>Alerts Options</h2>
+            <ul class="ibm-list">
+                <li class="ibm-list__item">level: The level of the alert 'error', 'warning', or 'info'</li>
+                <li class="ibm-list__item">dismissable: Whether the alert can be closed or not</li>
+                <li class="ibm-list__item">title: The title of the alert</li>
+                <li class="ibm-list__item">text: The text the laert  should have</li>
+                <li class="ibm-list__item">link &lt;optional&gt;: a link to more information</li>
+                <li class="ibm-list__item">link text &lt;optional&gt;: the text to be displayed on the link</li>
+            </ul>
+            <p>Alerts can also be added with a service. In your controller add watsonAlerts to the dependencies. Then use the methods add, remove, and clear.</p>
+        </div>
+    </div>
 </div>

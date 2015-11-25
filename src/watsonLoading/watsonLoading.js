@@ -23,7 +23,7 @@ angular.module('ibmwatson-common-ui-components.watsonLoading', [])
       restrict: 'EA',
       replace: true,
       scope: {
-        loadingMessage: '=',
+        loadingMessage: '='
       }
     };
   });
