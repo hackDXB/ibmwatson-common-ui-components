@@ -12,7 +12,7 @@
                 });
         })
 
-        .controller('WatsonTestController', ['$scope', function init($scope ) {
+        .controller('WatsonTestController', ['$scope', 'watsonAlerts', function init($scope, watsonAlerts) {
             /**
              *
              * DROP DOWN
@@ -42,7 +42,7 @@
                 placeHolderText: 'Enter search phrase here',
                 buttonText: 'Search!!!!',
                 buttonIcon: 'ibm-icon--search',
-                buttonClass: 'ibm-btn ibm-btn--primary',
+                buttonClass: 'ibm-btn ibm-btn--primary'
             };
 
             $scope.mySearchAction = function() {
@@ -72,6 +72,35 @@
             $scope.myModalAction = function () {
                 console.log('modalFunction');
                 $scope.modalClicked = 'modal ok clicked';
-            }
+            };
+
+            /**
+             * LOADING
+             */
+            $scope.loadingMessage = 'I\'m loading, have some cake while you wait';
+
+            /**
+             * ALERTS
+             */
+            watsonAlerts.add({
+                level: 'info',
+                dismissable: 'true',
+                title: 'There are plenty of cakes available',
+                text: 'There is currently lots of cake, no action is required at this time'
+            });
+
+            watsonAlerts.add({
+                level: 'warning',
+                dismissable: 'true',
+                title: 'Cake is running low',
+                text: 'There are only 2 cakes left'
+            });
+
+            $scope.alerts = [{
+                level: 'error',
+                dismissable: 'true',
+                title: 'No Cake Available',
+                text: 'All cake has been eaten, please restock'
+            }];
         }])
 }());

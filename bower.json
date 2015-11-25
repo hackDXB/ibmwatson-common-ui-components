@@ -21,7 +21,9 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "src",
+    "app"
   ],
   "dependencies":{
     "angular": ">=1.2.*",
