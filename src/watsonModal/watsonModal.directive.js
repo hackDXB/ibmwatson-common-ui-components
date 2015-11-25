@@ -30,7 +30,8 @@ angular.module('ibmwatson-common-ui-components.watsonModal', [])
                 modalId: '=',
                 okTitle: '=',
                 cancelTitle: '=?',
-                action: '&'
+                action: '&',
+                disableOkExpression: '=?'
             },
             link: function(scope, element) {
                 scope.uniqueId = 'watsonModal' + uniqueId++;

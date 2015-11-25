@@ -66,13 +66,15 @@
                 myModalId: 'myModalId',
                 title: 'Are you sure?',
                 okTitle: 'OK',
-                cancelTitle: 'Cancel'
+                cancelTitle: 'Cancel',
+                disable: true
             };
 
             $scope.myModalAction = function () {
                 console.log('modalFunction');
                 $scope.modalClicked = 'modal ok clicked';
             };
+
 
             /**
              * LOADING

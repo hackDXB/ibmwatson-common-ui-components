@@ -595,7 +595,8 @@ angular.module('ibmwatson-common-ui-components.watsonModal', [])
                 modalId: '=',
                 okTitle: '=',
                 cancelTitle: '=?',
-                action: '&'
+                action: '&',
+                disableOkExpression: '=?'
             },
             link: function(scope, element) {
                 scope.uniqueId = 'watsonModal' + uniqueId++;
@@ -765,7 +766,7 @@ angular.module('watsonModal/watsonModal.html', []).run(['$templateCache', functi
     '            </div>\n' +
     '            <div class="modal-footer ibm-modal__footer">\n' +
     '                <button ng-if="cancelTitle" type="button" value="{{cancelTitle}}" class="btn ibm-btn ibm-btn--link" data-dismiss="modal">{{cancelTitle}}</button>\n' +
-    '                <button type="button" value="{{okTitle}}" class="btn ibm-btn ibm-btn--primary okButton">{{okTitle}}</button>\n' +
+    '                <button type="button" value="{{okTitle}}" class="btn ibm-btn ibm-btn--primary okButton" ng-disabled="disableOkExpression">{{okTitle}}</button>\n' +
     '            </div>\n' +
     '        </div>\n' +
     '    </div>\n' +
