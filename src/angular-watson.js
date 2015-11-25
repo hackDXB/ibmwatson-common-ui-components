@@ -23,5 +23,7 @@ angular.module('ibmwatson-common-ui-components',[
     'ibmwatson-common-ui-components.watsonDropDown',
     'ibmwatson-common-ui-components.watsonSearch',
     'ibmwatson-common-ui-components.watsonFileUpload',
-    'ibmwatson-common-ui-components.watsonModal'
+    'ibmwatson-common-ui-components.watsonModal',
+    'ibmwatson-common-ui-components.watsonAutoFitScreen',
+    'ibmwatson-common-ui-components.watsonClearableTextBox'
     ]);

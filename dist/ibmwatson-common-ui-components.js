@@ -1,6 +1,6 @@
 'use strict';
-angular.module("ibmwatson-common-ui-components", ["ibmwatson-common-ui-components.templates", "ibmwatson-common-ui-components.watsonAlerts","ibmwatson-common-ui-components.watsonDropDown","ibmwatson-common-ui-components.watsonFileUpload","ibmwatson-common-ui-components.watsonFooter","ibmwatson-common-ui-components.watsonLoading","ibmwatson-common-ui-components.watsonModal","ibmwatson-common-ui-components.watsonSearch"]);
-angular.module("ibmwatson-common-ui-components.templates", ["watsonAlerts/watsonAlertsBar.html","watsonDropDown/watsonDropDown.html","watsonFileUpload/watsonFileUpload.html","watsonFooter/watsonFooter.html","watsonLoading/watsonLoading.html","watsonModal/watsonModal.html","watsonSearch/watsonSearch.html"]);
+angular.module("ibmwatson-common-ui-components", ["ibmwatson-common-ui-components.templates", "ibmwatson-common-ui-components.watsonAlerts","ibmwatson-common-ui-components.watsonAutoFitScreen","ibmwatson-common-ui-components.watsonClearableTextBox","ibmwatson-common-ui-components.watsonDropDown","ibmwatson-common-ui-components.watsonFileUpload","ibmwatson-common-ui-components.watsonFooter","ibmwatson-common-ui-components.watsonLoading","ibmwatson-common-ui-components.watsonModal","ibmwatson-common-ui-components.watsonSearch"]);
+angular.module("ibmwatson-common-ui-components.templates", ["watsonAlerts/watsonAlertsBar.html","watsonDropDown/watsonDropDown.html","watsonFileUpload/watsonFileUpload.html","watsonFooter/watsonFooter.html","watsonLoading/watsonLoading.html","watsonLoading/watsonLoading.tmpl.html","watsonModal/watsonModal.html","watsonSearch/watsonSearch.html"]);
 // Source: src/watsonAlerts/watsonAlerts.js
 /**
  * Copyright 2015 IBM Corp.
@@ -144,6 +144,174 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
         alerts: '=?alerts'
       },
       restrict: 'E',
+      replace: true
+    };
+  });
+
+// Source: src/watsonAutoFitScreen/watsonAutoFitScreen.js
+/*
+This directive will automatically configure the screen sizes such that the entire
+body fits to the height of the screen. The 'content' height will be calculated as
+the height of the screen minus the height of the header and footer.
+
+There is also an optional 'min-height' attribute for the watson-afs-content
+directive that overrides the minHeight of 480px
+
+Example Use:
+    <body watson-afs-body>
+        <div watson-afs-header></div>
+        <div watson-afs-content></div>
+        <div watson-afs-footer></div>
+    <body>
+*/
+
+angular.module('ibmwatson-common-ui-components.watsonAutoFitScreen', [])
+  .directive('watsonAfsBody', function() {
+    return {
+      restrict: 'A',
+      controller: function() {
+        var heights = {
+          header: 0,
+          footer: 0
+        };
+        // components = ( 'header' || 'footer' )
+        this.setHeight = function(component, height) {
+          heights[component] = height;
+        };
+        this.getHeight = function(component) {
+          return heights[component];
+        };
+      }
+    };
+  })
+  .directive('watsonAfsHeader', function() {
+    function link(scope, element, attrs, watsonAfsBody) {
+      watsonAfsBody.setHeight('header', element.outerHeight());
+    }
+    return {
+      restrict: 'A',
+      require: '^watsonAfsBody',
+      link: link
+    };
+  })
+  .directive('watsonAfsContent', ['$window',
+    function($window) {
+      function link(scope, element, attrs, watsonAfsBody) {
+        element[0].style.overflowY = 'scroll';
+
+        var headerHeight = watsonAfsBody.getHeight('header');
+        var footerHeight = watsonAfsBody.getHeight('footer');
+        var windowHeight = $window.innerHeight;
+
+        // setting a minimum screen height. do we really need this?
+        var minHeight = (Number(attrs.minHeight) || 200) - (headerHeight + footerHeight);
+
+        function sizeBody() {
+          var h = windowHeight - (headerHeight + footerHeight);
+          h = (h < minHeight ? minHeight : h);
+          var hStr = h + 'px';
+          element[0].style.height = hStr;
+          element[0].style.maxHeight = hStr;
+          // let interested parties know that resize has occurred
+          scope.$broadcast('contentResized', h);
+        }
+        sizeBody();
+        angular.element($window).bind('resize', function() {
+          windowHeight = $window.innerHeight;
+          sizeBody();
+        });
+      }
+      return {
+        restrict: 'A',
+        require: '^watsonAfsBody',
+        link: link
+      };
+    }
+  ])
+  .directive('watsonAfsFooter', function() {
+    function link(scope, element, attrs, watsonAfsBody) {
+      watsonAfsBody.setHeight('footer', element.outerHeight());
+    }
+    return {
+      restrict: 'A',
+      require: '^watsonAfsBody',
+      link: link
+    };
+  });
+// Source: src/watsonClearableTextBox/watsonClearableTextBox.js
+/**
+ * Copyright 2015 IBM Corp.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
+
+angular.module('ibmwatson-common-ui-components.watsonClearableTextBox',[]);
+
+angular.module('ibmwatson-common-ui-components.watsonClearableTextBox')
+  .directive('watsonClearableTextBox', function() {
+    return {
+      restrict: 'E',
+      template: '<div class="ibm-clearable-textbox" tabindex="-1"><input type="text"></input><button type="button" class="close ibm-alert__close" aria-label="Close"><span class="ibm-icon--close-cancel-error" aria-hidden="true"></span></button></div>',
+      require: 'ngModel',
+      link: function(scope,element,attrs,ngModel){
+
+        var formControlElement = element.find('input[type="text"]');
+
+        var clearElement = element.find('button');
+
+        // When the model changes, update the value of the textbox
+        ngModel.$render = function(){
+          formControlElement.val(ngModel.$viewValue);
+        };
+
+        // When the user updates the value in the box, update the model
+        formControlElement.on('blue keyup change',function update(){
+          var newValue = formControlElement.val();
+          ngModel.$setViewValue(newValue);
+        });
+
+        // When the dom node for this directive gets focus
+        // programmatically, send it to the input field
+        element.focus(function onFocus(){
+          formControlElement.focus();
+        });
+
+        // When the clear button is pressed, clear the text and value
+        clearElement.on('click',function clear(){
+          var newValue = '';
+
+          formControlElement.val(newValue);
+
+          ngModel.$setViewValue(newValue);
+
+          // If a clear function has been specified
+          // execute it
+          if(attrs.watsonClear){
+            scope.$eval(attrs.watsonClear);
+          }
+
+          // Finally, since our handler was initated outside of angular
+          // update the scope
+          scope.$apply();
+        });
+
+        // put list attribute onto input element
+        if(attrs.list){
+          formControlElement.attr('list',attrs.list);
+        }
+      },
+
       replace: true
     };
   });
@@ -387,7 +555,7 @@ angular.module('ibmwatson-common-ui-components.watsonFooter', [])
 angular.module('ibmwatson-common-ui-components.watsonLoading', [])
   .directive('watsonLoading', function() {
     return {
-      templateUrl: 'watsonLoading/watsonLoading.html',
+      templateUrl: 'components/ibmwatson-common-ui-components/src/watsonLoading/watsonLoading.tmpl.html',
       restrict: 'EA',
       replace: true,
       scope: {
@@ -575,6 +743,15 @@ angular.module('watsonFooter/watsonFooter.html', []).run(['$templateCache', func
 // Source: src/watsonLoading/watsonLoading.html.js
 angular.module('watsonLoading/watsonLoading.html', []).run(['$templateCache', function($templateCache) {
   $templateCache.put('watsonLoading/watsonLoading.html',
+    '<div class="ibm-loading">\n' +
+    '  <div class="ibm-loading-img"></div>\n' +
+    '  <p class="ibm-loading-message" ng-if="loadingMessage">{{ loadingMessage }}</p>\n' +
+    '</div>\n' +
+    '');
+}]);
+
+angular.module('watsonLoading/watsonLoading.tmpl.html', []).run(['$templateCache', function($templateCache) {
+  $templateCache.put('watsonLoading/watsonLoading.tmpl.html',
     '<div class="ibm-loading">\n' +
     '  <div class="ibm-loading-img"></div>\n' +
     '  <p class="ibm-loading-message" ng-if="loadingMessage">{{ loadingMessage }}</p>\n' +
