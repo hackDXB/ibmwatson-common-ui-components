@@ -19,11 +19,11 @@
 angular.module('ibmwatson-common-ui-components.watsonLoading', [])
   .directive('watsonLoading', function() {
     return {
-      templateUrl: 'components/ibmwatson-common-ui-components/src/watsonLoading/watsonLoading.tmpl.html',
+      templateUrl: 'watsonLoading/watsonLoading.html',
       restrict: 'EA',
       replace: true,
       scope: {
-        loadingMessage: '=',
+        loadingMessage: '='
       }
     };
   });
