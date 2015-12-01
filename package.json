@@ -26,29 +26,29 @@
     "David George (david.george@uk.ibm.com)",
     "Caroline Church (caroline.church@uk.ibm.com)"
   ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "express": "~4.13.3"
+  },
   "devDependencies": {
     "grunt": "~0.4.4",
-    "grunt-bower-task": "^0.4.0",
+    "grunt-bower-task": "~0.4.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-concat": "~0.4.0",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-uglify": "~0.4.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-contrib-connect": "^0.11.2",
-    "grunt-env": "^0.4.4",
-    "grunt-html2js": "^0.3.4",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-connect": "~0.11.2",
+    "grunt-env": "~0.4.4",
+    "grunt-html2js": "~0.3.5",
     "grunt-karma": "~0.8.2",
-    "jasmine": "^2.2.1",
-    "jasmine-core": "^2.2.0",
-    "karma": "^0.12.31",
-    "karma-cli": "0.0.4",
-    "karma-coverage": "^0.2.7",
-    "karma-jasmine": "^0.3.5",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "phantomjs": "^1.9.16"
-  },
-  "license": "Apache-2.0",
-  "dependencies": {
-    "express": "^4.13.3"
+    "jasmine": "~2.3.2",
+    "jasmine-core": "~2.3.4",
+    "karma": "~0.12.31",
+    "karma-cli": "~0.0.4",
+    "karma-coverage": "~0.2.7",
+    "karma-jasmine": "~0.3.5",
+    "karma-phantomjs-launcher": "~0.1.4",
+    "phantomjs": "~1.9.16"
   }
 }
