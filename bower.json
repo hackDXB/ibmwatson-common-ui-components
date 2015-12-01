@@ -1,6 +1,6 @@
 {
   "name": "ibmwatson-common-ui-components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A set of reusable angular directives. Should be used in any IBM Watson Tooling applications",
   "main": "dist/ibmwatson-common-ui-components.js",
   "keywords": [
