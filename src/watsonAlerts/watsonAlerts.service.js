@@ -29,7 +29,7 @@
  * }
  */
 angular.module('ibmwatson-common-ui-components.watsonAlerts')
-  .factory('watsonAlerts', ['$log', function init ($log) {
+  .factory('watsonAlerts', function init () {
 
     var LEVELS = [ 'success', 'info', 'warning', 'error' ];
 
@@ -39,8 +39,6 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
     * Add an alert to the list of alerts
     */
     function add( /*Object*/ alert) {
-      $log.debug('add', alert, alerts);
-
       alert.level = alert.level || LEVELS[1];
       if (LEVELS.indexOf(alert.level) < 0) {
         alert.level = LEVELS[1];
@@ -65,7 +63,6 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
     * Remove an alert from the list of alerts
     */
     function remove( /*Object*/ alert) {
-      $log.debug(remove, alert);
       var index = alerts.indexOf(alert);
       if (index >= 0) {
         alerts.splice(index, 1);
@@ -87,4 +84,4 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
       'clear': clear
     };
 
-  }]);
+  });
