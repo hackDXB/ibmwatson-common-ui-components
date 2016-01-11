@@ -16,12 +16,12 @@
 
 'use strict';
 
-describe('Directive: watsonModal', function() {
+describe('Directive: watsonModal', function () {
     var $compile,
-        $rootScope,
-        options,
-        myModalAction,
-        modalClicked;
+      $rootScope,
+      options;
+
+    var myModalAction = function () {};
 
 
     // Load the myApp module, which contains the directive
@@ -31,115 +31,108 @@ describe('Directive: watsonModal', function() {
 
     // Store references to $rootScope and $compile
     // so they are available to all tests in this describe block
-    beforeEach(inject(function(_$compile_, _$rootScope_) {
-        // The injector unwraps the underscores (_) from around the parameter names when matching
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
+    beforeEach(inject(function (_$compile_, _$rootScope_) {
+      // The injector unwraps the underscores (_) from around the parameter names when matching
+      $compile = _$compile_;
+      $rootScope = _$rootScope_;
 
-        options =  {
-            type: 'confirm',
-            myModalId: 'myModalId',
-            title: 'Are you sure?',
-            okTitle: 'OK',
-            cancelTitle: 'Cancel'
-        };
-
-        myModalAction = function () {
-            modalClicked = 'modal ok clicked';
-        };
+      options =  {
+        type : 'confirm',
+        myModalId : 'myModalId',
+        title : 'Are you sure?',
+        okTitle : 'OK',
+        cancelTitle : 'Cancel'
+      };
     }));
 
-    it('should replace the element with the appropriate content', function() {
+    it('should replace the element with the appropriate content', function () {
 
-        var scope = $rootScope.$new();
+      var scope = $rootScope.$new();
 
-        // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-modal title="options.title" action="myModalAction()" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
+      // Compile a piece of HTML containing the directive
+      var element = $compile('<watson-modal title="options.title" action="myModalAction()" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
 
-        scope.$digest();
+      scope.$digest();
 
-        // Check that the compiled element contains the templated content
-        expect(element.hasClass('modal')).toBe(true);
-
-    });
-
-    it('should reflects changes to the scope', function() {
-
-        var scope = $rootScope.$new();
-
-        scope.options = options;
-
-        // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-modal title="options.title" action="myModalAction()" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
-
-        scope.$digest();
-
-        // Check that the compiled element contains the templated content
-        expect(element.html()).toContain(options.title);
-        expect(element.html()).toContain(options.okTitle);
-        expect(element.html()).toContain(options.cancelTitle);
+      // Check that the compiled element contains the templated content
+      expect(element.hasClass('modal')).toBe(true);
 
     });
 
-    it('should have two buttons', function() {
+    it('should reflects changes to the scope', function () {
 
-        var scope = $rootScope.$new();
+      var scope = $rootScope.$new();
 
-        scope.options = options;
+      scope.options = options;
 
-        scope.myModalAction = myModalAction;
+      // Compile a piece of HTML containing the directive
+      var element = $compile('<watson-modal title="options.title" action="myModalAction()" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
 
-        // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-modal title="options.title" value="{{options.okTitle}}" action="myModalAction" modal-Id="options.myModalId" ok-title="options.okTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
+      scope.$digest();
 
-       scope.$digest();
+      // Check that the compiled element contains the templated content
+      expect(element.html()).toContain(options.title);
+      expect(element.html()).toContain(options.okTitle);
+      expect(element.html()).toContain(options.cancelTitle);
 
-        // Check that the compiled element contains the templated content
-        var buttons = element.find('button');
-
-        expect(buttons.length).toBe(2);
-        expect(buttons[0].getAttribute('aria-label')).toBe('Close');
-        expect(buttons[1].value).toBe(options.okTitle);
     });
 
-    it('should have a cancel button', function() {
+    it('should have two buttons', function () {
 
-        var scope = $rootScope.$new();
+      var scope = $rootScope.$new();
 
-        scope.options = options;
+      scope.options = options;
 
-        scope.myModalAction = myModalAction;
+      scope.myModalAction = myModalAction;
 
-        // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-modal title="options.title"action="myModalAction" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
+      // Compile a piece of HTML containing the directive
+      var element = $compile('<watson-modal title="options.title" value="{{options.okTitle}}" action="myModalAction" modal-Id="options.myModalId" ok-title="options.okTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
 
-        scope.$digest();
+      scope.$digest();
 
-        // Check that the compiled element contains the templated content
-        var buttons = element.find('button');
-        expect(buttons[1].value).toBe(options.cancelTitle);
+      // Check that the compiled element contains the templated content
+      var buttons = element.find('button');
+
+      expect(buttons.length).toBe(2);
+      expect(buttons[0].getAttribute('aria-label')).toBe('Close');
+      expect(buttons[1].value).toBe(options.okTitle);
     });
 
-    it('should have transcluded', function() {
+    it('should have a cancel button', function () {
 
-        var scope = $rootScope.$new();
+      var scope = $rootScope.$new();
 
-        scope.options = options;
+      scope.options = options;
 
-        scope.myModalAction = myModalAction;
+      scope.myModalAction = myModalAction;
 
-        // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-modal title="options.title"action="myModalAction" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
+      // Compile a piece of HTML containing the directive
+      var element = $compile('<watson-modal title="options.title"action="myModalAction" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
 
-        scope.$digest();
+      scope.$digest();
 
-        var transcludedBit = element.find('p');
-
-        // Check that the compiled element contains the templated content
-        expect(transcludedBit.html()).toContain('Are you sure you want to take this action?');
+      // Check that the compiled element contains the templated content
+      var buttons = element.find('button');
+      expect(buttons[1].value).toBe(options.cancelTitle);
     });
 
+    it('should have transcluded', function () {
 
+      var scope = $rootScope.$new();
 
+      scope.options = options;
 
-});
+      scope.myModalAction = myModalAction;
+
+      // Compile a piece of HTML containing the directive
+      var element = $compile('<watson-modal title="options.title"action="myModalAction" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
+
+      scope.$digest();
+
+      var transcludedBit = element.find('p');
+
+      // Check that the compiled element contains the templated content
+      expect(transcludedBit.html()).toContain('Are you sure you want to take this action?');
+    });
+
+  });

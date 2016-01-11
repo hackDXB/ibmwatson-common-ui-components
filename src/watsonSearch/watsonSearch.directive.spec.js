@@ -16,66 +16,54 @@
 
 'use strict';
 
-describe('Directive: watsonSearch', function() {
-    var $compile,
-        $rootScope,
-        searchData,
-        mySearchAction,
-        searchClicked;
+describe('Directive: watsonSearch', function () {
+  var $compile,
+    $rootScope,
+    searchData;
 
+  // Load the myApp module, which contains the directive
+  beforeEach(module('ibmwatson-common-ui-components'));
 
-    // Load the myApp module, which contains the directive
-    beforeEach(module('ibmwatson-common-ui-components'));
+  beforeEach(module('watsonSearch/watsonSearch.html'));
 
-    beforeEach(module('watsonSearch/watsonSearch.html'));
+  // Store references to $rootScope and $compile
+  // so they are available to all tests in this describe block
+  beforeEach(inject(function (_$compile_, _$rootScope_) {
+    // The injector unwraps the underscores (_) from around the parameter names when matching
+    $compile = _$compile_;
+    $rootScope = _$rootScope_;
 
-    // Store references to $rootScope and $compile
-    // so they are available to all tests in this describe block
-    beforeEach(inject(function(_$compile_, _$rootScope_) {
-        // The injector unwraps the underscores (_) from around the parameter names when matching
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
+    searchData = {
+      placeHolderText : 'Enter search phrase here'
+    };
+  }));
 
-        mySearchAction = function() {
-            console.log('searchFunction') ;
-            searchClicked = 'search text was ' + searchData.searchText;
-        };
+  it('should replace the element with the appropriate content', function () {
 
-        searchData = {
-            placeHolderText: 'Enter search phrase here',
-        };
+    var scope = $rootScope.$new();
 
+    // Compile a piece of HTML containing the directive
+    var element = $compile('<watson-search place-holder-text="searchData.placeHolderText" button-text="searchData.buttonText" action="mySearchAction()" button-icon="searchData.buttonIcon" search-text="searchData.searchText" button-class="searchData.buttonClass" text-class="searchData.textClass"></watson-search>')(scope);
+    scope.$digest();
 
-    }));
+    // Check that the compiled element contains the templated content
+    expect(element.hasClass('form-group')).toBe(true);
 
-    it('should replace the element with the appropriate content', function() {
+  });
 
-        var scope = $rootScope.$new();
+  it('should reflects changes to the scope', function () {
 
-        // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-search place-holder-text="searchData.placeHolderText" button-text="searchData.buttonText" action="mySearchAction()" button-icon="searchData.buttonIcon" search-text="searchData.searchText" button-class="searchData.buttonClass" text-class="searchData.textClass"></watson-search>')(scope);
-        scope.$digest();
+    var scope = $rootScope.$new();
 
-        // Check that the compiled element contains the templated content
-        expect(element.hasClass('form-group')).toBe(true);
+    scope.searchData = searchData;
 
-    });
+    // Compile a piece of HTML containing the directive
+    var element = $compile('<watson-search place-holder-text="searchData.placeHolderText" button-text="searchData.buttonText" action="mySearchAction()" button-icon="searchData.buttonIcon" search-text="searchData.searchText" button-class="searchData.buttonClass" text-class="searchData.textClass"></watson-search>')(scope);
 
-    it('should reflects changes to the scope', function() {
+    scope.$digest();
 
-        var scope = $rootScope.$new();
-
-        scope.searchData = searchData;
-
-        // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-search place-holder-text="searchData.placeHolderText" button-text="searchData.buttonText" action="mySearchAction()" button-icon="searchData.buttonIcon" search-text="searchData.searchText" button-class="searchData.buttonClass" text-class="searchData.textClass"></watson-search>')(scope);
-
-        scope.$digest();
-
-        // Check that the compiled element contains the templated content
-        expect(element.html()).toContain(searchData.placeHolderText);
-    });
-
+    // Check that the compiled element contains the templated content
+    expect(element.html()).toContain(searchData.placeHolderText);
+  });
 
 });
-

@@ -18,36 +18,34 @@
 'use strict';
 
 angular.module('ibmwatson-common-ui-components.watsonClearableTextBox', [])
-  .directive('watsonClearableTextBox', function() {
+  .directive('watsonClearableTextBox', function clearableTextBox () {
     return {
-      restrict: 'E',
-      template: 'watsonClearableTextBox/watsonClearableTextBox.html',
-      require: 'ngModel',
-      link: function(scope,element,attrs,ngModel){
-
+      restrict : 'E',
+      template : 'watsonClearableTextBox/watsonClearableTextBox.html',
+      require : 'ngModel',
+      link : function (scope,element,attrs,ngModel) {
         var formControlElement = element.find('input[type="text"]');
-
         var clearElement = element.find('button');
 
         // When the model changes, update the value of the textbox
-        ngModel.$render = function(){
+        ngModel.$render = function () {
           formControlElement.val(ngModel.$viewValue);
         };
 
         // When the user updates the value in the box, update the model
-        formControlElement.on('blue keyup change',function update(){
+        formControlElement.on('blue keyup change',function update () {
           var newValue = formControlElement.val();
           ngModel.$setViewValue(newValue);
         });
 
         // When the dom node for this directive gets focus
         // programmatically, send it to the input field
-        element.focus(function onFocus(){
+        element.focus(function onFocus () {
           formControlElement.focus();
         });
 
         // When the clear button is pressed, clear the text and value
-        clearElement.on('click',function clear(){
+        clearElement.on('click',function clear () {
           var newValue = '';
 
           formControlElement.val(newValue);
@@ -56,7 +54,7 @@ angular.module('ibmwatson-common-ui-components.watsonClearableTextBox', [])
 
           // If a clear function has been specified
           // execute it
-          if(attrs.watsonClear){
+          if (attrs.watsonClear) {
             scope.$eval(attrs.watsonClear);
           }
 
@@ -66,11 +64,11 @@ angular.module('ibmwatson-common-ui-components.watsonClearableTextBox', [])
         });
 
         // put list attribute onto input element
-        if(attrs.list){
+        if (attrs.list) {
           formControlElement.attr('list',attrs.list);
         }
       },
 
-      replace: true
+      replace : true
     };
   });

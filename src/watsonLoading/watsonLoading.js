@@ -17,13 +17,13 @@
 'use strict';
 
 angular.module('ibmwatson-common-ui-components.watsonLoading', [])
-  .directive('watsonLoading', function() {
+  .directive('watsonLoading', function loading () {
     return {
-      templateUrl: 'watsonLoading/watsonLoading.html',
-      restrict: 'EA',
-      replace: true,
-      scope: {
-        loadingMessage: '='
+      templateUrl : 'watsonLoading/watsonLoading.html',
+      restrict : 'EA',
+      replace : true,
+      scope : {
+        loadingMessage : '='
       }
     };
   });
