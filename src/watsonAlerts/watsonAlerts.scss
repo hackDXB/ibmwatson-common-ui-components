@@ -14,15 +14,11 @@
  * limitations under the License.
  **/
 
-.ibm-clearable-textbox {
-	display: inline-block;
+.ibm-alert {
+  padding: .7em 2em .5em 1em;
+  margin-bottom: 0;
 
-	input {
-		border-width: 0;
-		outline: none;
-	}
-
-	.ibm-icon--close-cancel-error {
-    font-size: .8em;
+  .ibm-alert__close :hover {
+    color: #AD1625;
   }
 }

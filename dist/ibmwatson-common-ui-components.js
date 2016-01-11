@@ -1,6 +1,6 @@
 'use strict';
 angular.module("ibmwatson-common-ui-components", ["ibmwatson-common-ui-components.templates", "ibmwatson-common-ui-components.watsonAlerts","ibmwatson-common-ui-components.watsonAutoFitScreen","ibmwatson-common-ui-components.watsonClearableTextBox","ibmwatson-common-ui-components.watsonDropDown","ibmwatson-common-ui-components.watsonFileUpload","ibmwatson-common-ui-components.watsonFooter","ibmwatson-common-ui-components.watsonLoading","ibmwatson-common-ui-components.watsonModal","ibmwatson-common-ui-components.watsonSearch"]);
-angular.module("ibmwatson-common-ui-components.templates", ["watsonAlerts/watsonAlertsBar.html","watsonDropDown/watsonDropDown.html","watsonFileUpload/watsonFileUpload.html","watsonFooter/watsonFooter.html","watsonLoading/watsonLoading.html","watsonModal/watsonModal.html","watsonSearch/watsonSearch.html"]);
+angular.module("ibmwatson-common-ui-components.templates", ["watsonAlerts/watsonAlertsBar.html","watsonClearableTextBox/watsonClearableTextBox.html","watsonDropDown/watsonDropDown.html","watsonFileUpload/watsonFileUpload.html","watsonFooter/watsonFooter.html","watsonLoading/watsonLoading.html","watsonModal/watsonModal.html","watsonSearch/watsonSearch.html"]);
 // Source: src/watsonAlerts/watsonAlerts.js
 /**
  * Copyright 2015 IBM Corp.
@@ -50,7 +50,7 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts', []);
  * }
  */
 angular.module('ibmwatson-common-ui-components.watsonAlerts')
-  .factory('watsonAlerts', ['$log', function init ($log) {
+  .factory('watsonAlerts', function init () {
 
     var LEVELS = [ 'success', 'info', 'warning', 'error' ];
 
@@ -60,8 +60,6 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
     * Add an alert to the list of alerts
     */
     function add( /*Object*/ alert) {
-      $log.debug('add', alert, alerts);
-
       alert.level = alert.level || LEVELS[1];
       if (LEVELS.indexOf(alert.level) < 0) {
         alert.level = LEVELS[1];
@@ -86,7 +84,6 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
     * Remove an alert from the list of alerts
     */
     function remove( /*Object*/ alert) {
-      $log.debug(remove, alert);
       var index = alerts.indexOf(alert);
       if (index >= 0) {
         alerts.splice(index, 1);
@@ -108,7 +105,7 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
       'clear': clear
     };
 
-  }]);
+  });
 
 // Source: src/watsonAlerts/watsonAlertsBar.directive.js
 /**
@@ -149,6 +146,22 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
   });
 
 // Source: src/watsonAutoFitScreen/watsonAutoFitScreen.js
+/**
+ * Copyright 2015 IBM Corp.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ **/
+
 /*
 This directive will automatically configure the screen sizes such that the entire
 body fits to the height of the screen. The 'content' height will be calculated as
@@ -238,6 +251,7 @@ angular.module('ibmwatson-common-ui-components.watsonAutoFitScreen', [])
       link: link
     };
   });
+
 // Source: src/watsonClearableTextBox/watsonClearableTextBox.js
 /**
  * Copyright 2015 IBM Corp.
@@ -256,13 +270,11 @@ angular.module('ibmwatson-common-ui-components.watsonAutoFitScreen', [])
  **/
 
 
-angular.module('ibmwatson-common-ui-components.watsonClearableTextBox',[]);
-
-angular.module('ibmwatson-common-ui-components.watsonClearableTextBox')
+angular.module('ibmwatson-common-ui-components.watsonClearableTextBox', [])
   .directive('watsonClearableTextBox', function() {
     return {
       restrict: 'E',
-      template: '<div class="ibm-clearable-textbox" tabindex="-1"><input type="text"></input><button type="button" class="close ibm-alert__close" aria-label="Close"><span class="ibm-icon--close-cancel-error" aria-hidden="true"></span></button></div>',
+      template: 'watsonClearableTextBox/watsonClearableTextBox.html',
       require: 'ngModel',
       link: function(scope,element,attrs,ngModel){
 
@@ -690,6 +702,18 @@ angular.module('watsonAlerts/watsonAlertsBar.html', []).run(['$templateCache', f
     '		</button>\n' +
     '		<span ng-show="alert.title"><strong>{{alert.title}}</strong> </span>{{alert.text || \'Unknown Error Occurred\' }}<span ng-show="alert.link"> <a href="{{alert.link}}">{{alert.linkText || \'Learn more\'}}</a></span>\n' +
     '	</div>\n' +
+    '</div>\n' +
+    '');
+}]);
+
+// Source: src/watsonClearableTextBox/watsonClearableTextBox.html.js
+angular.module('watsonClearableTextBox/watsonClearableTextBox.html', []).run(['$templateCache', function($templateCache) {
+  $templateCache.put('watsonClearableTextBox/watsonClearableTextBox.html',
+    '<div class="ibm-clearable-textbox" tabindex="-1">\n' +
+    '  <input type="text">\n' +
+    '  <button type="button" class="close ibm-alert__close" aria-label="Close" title="Close">\n' +
+    '    <span class="ibm-icon--close-cancel-error" aria-hidden="true"></span>\n' +
+    '  </button>\n' +
     '</div>\n' +
     '');
 }]);

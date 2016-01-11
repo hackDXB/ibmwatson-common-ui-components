@@ -14,15 +14,8 @@
  * limitations under the License.
  **/
 
-.ibm-clearable-textbox {
-	display: inline-block;
-
-	input {
-		border-width: 0;
-		outline: none;
-	}
-
-	.ibm-icon--close-cancel-error {
-    font-size: .8em;
-  }
-}
+// Component styles are injected through grunt
+// injector
+@import 'src/watsonAlerts/watsonAlerts.scss';
+@import 'src/watsonClearableTextBox/watsonClearableTextBox.scss';
+// endinjector

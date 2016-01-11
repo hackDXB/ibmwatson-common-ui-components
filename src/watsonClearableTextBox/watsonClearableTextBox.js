@@ -17,13 +17,11 @@
 
 'use strict';
 
-angular.module('ibmwatson-common-ui-components.watsonClearableTextBox',[]);
-
-angular.module('ibmwatson-common-ui-components.watsonClearableTextBox')
+angular.module('ibmwatson-common-ui-components.watsonClearableTextBox', [])
   .directive('watsonClearableTextBox', function() {
     return {
       restrict: 'E',
-      template: '<div class="ibm-clearable-textbox" tabindex="-1"><input type="text"></input><button type="button" class="close ibm-alert__close" aria-label="Close"><span class="ibm-icon--close-cancel-error" aria-hidden="true"></span></button></div>',
+      template: 'watsonClearableTextBox/watsonClearableTextBox.html',
       require: 'ngModel',
       link: function(scope,element,attrs,ngModel){
 
