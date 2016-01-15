@@ -1,8 +1,7 @@
 <div class="dropdown ibm-dropdown">
   <button class="btn ibm-dropdown__button" ng-class="myClass" type="button" id="{{::uniqueId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     <span ng-if="title">{{title}}</span>
-    <span ng-if!="dropDownIcon" class="ibm-glyph--caret-down_24"></span>
-    <span ng-if="dropDownIcon" ng-class="dropDownIcon"></span>
+    <span ng-class="dropDownIcon ? dropDownIcon: 'ibm-glyph--caret-down_24'"></span>
   </button>
   <ul class="dropdown-menu ibm-dropdown__menu ibm-dropdown__button--icon" ng-class="{'ibm-dropdown__menu--icons' : menuItems[0].icon}" aria-labelledby="{{::uniqueId}}">
     <li ng-repeat="menuItem in menuItems">
