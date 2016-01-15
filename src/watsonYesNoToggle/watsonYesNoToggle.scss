@@ -1,0 +1,19 @@
+.yn-toggle {
+  width: 60px;
+  height: 23px;
+  border-radius: 20px;
+  overflow: auto;
+
+}
+
+.yn-toggle.yes {
+  background-image: url("../../bower_components/ibmwatson-common-ui-style/assets/images/yes_toggle.png");
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.yn-toggle.no {
+  background-image: url("../../bower_components/ibmwatson-common-ui-style/assets/images/no_toggle.png");
+  -webkit-background-size: cover;
+  background-size: cover;
+}

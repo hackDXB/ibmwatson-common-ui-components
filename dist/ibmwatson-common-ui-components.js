@@ -1,6 +1,6 @@
 'use strict';
-angular.module("ibmwatson-common-ui-components", ["ibmwatson-common-ui-components.templates", "ibmwatson-common-ui-components.watsonAlerts","ibmwatson-common-ui-components.watsonAutoFitScreen","ibmwatson-common-ui-components.watsonClearableTextBox","ibmwatson-common-ui-components.watsonDropDown","ibmwatson-common-ui-components.watsonFileUpload","ibmwatson-common-ui-components.watsonFooter","ibmwatson-common-ui-components.watsonLoading","ibmwatson-common-ui-components.watsonModal","ibmwatson-common-ui-components.watsonSearch"]);
-angular.module("ibmwatson-common-ui-components.templates", ["watsonAlerts/watsonAlertsBar.html","watsonClearableTextBox/watsonClearableTextBox.html","watsonDropDown/watsonDropDown.html","watsonFileUpload/watsonFileUpload.html","watsonFooter/watsonFooter.html","watsonLoading/watsonLoading.html","watsonModal/watsonModal.html","watsonSearch/watsonSearch.html"]);
+angular.module("ibmwatson-common-ui-components", ["ibmwatson-common-ui-components.templates", "ibmwatson-common-ui-components.watsonAlerts","ibmwatson-common-ui-components.watsonAutoFitScreen","ibmwatson-common-ui-components.watsonClearableTextBox","ibmwatson-common-ui-components.watsonDropDown","ibmwatson-common-ui-components.watsonFileUpload","ibmwatson-common-ui-components.watsonFooter","ibmwatson-common-ui-components.watsonLoading","ibmwatson-common-ui-components.watsonModal","ibmwatson-common-ui-components.watsonSearch","ibmwatson-common-ui-components.watsonYesNoToggle"]);
+angular.module("ibmwatson-common-ui-components.templates", ["watsonAlerts/watsonAlertsBar.html","watsonClearableTextBox/watsonClearableTextBox.html","watsonDropDown/watsonDropDown.html","watsonFileUpload/watsonFileUpload.html","watsonFooter/watsonFooter.html","watsonLoading/watsonLoading.html","watsonModal/watsonModal.html","watsonSearch/watsonSearch.html","watsonYesNoToggle/watsonYesNoToggle.html"]);
 // Source: src/watsonAlerts/watsonAlerts.js
 /**
  * Copyright 2015 IBM Corp.
@@ -683,6 +683,24 @@ angular.module('ibmwatson-common-ui-components.watsonSearch', [])
 
   });
 
+// Source: src/watsonYesNoToggle/watsonYesNoToggle.directive.js
+angular.module('ibmwatson-common-ui-components.watsonYesNoToggle', [])
+  .directive('watsonYesNoToggle', function () {
+    return {
+      restrict : 'E',
+      scope : {
+        value : '='
+      },
+      templateUrl : 'watsonYesNoToggle/watsonYesNoToggle.html',
+      link : function (scope) {
+        // Default value
+        scope.value = true;
+        scope.toggle = function () {
+          scope.value = !scope.value;
+        };
+      }
+    };
+  });
 // Source: src/watsonAlerts/watsonAlertsBar.html.js
 angular.module('watsonAlerts/watsonAlertsBar.html', []).run(['$templateCache', function($templateCache) {
   $templateCache.put('watsonAlerts/watsonAlertsBar.html',
@@ -798,4 +816,11 @@ angular.module('watsonSearch/watsonSearch.html', []).run(['$templateCache', func
     '  <input type="text" class="form-control ibm-form__search" ng-model="searchText" placeholder="{{placeHolderText}}" ng-focus="this.placeholder=\'\'" ng-blur="this.placeholder=\'{{placeHolderText}}\'">\n' +
     '</div>\n' +
     '');
+}]);
+
+// Source: src/watsonYesNoToggle/watsonYesNoToggle.html.js
+angular.module('watsonYesNoToggle/watsonYesNoToggle.html', []).run(['$templateCache', function($templateCache) {
+  $templateCache.put('watsonYesNoToggle/watsonYesNoToggle.html',
+    '<div class="yn-toggle" ng-click="toggle()" ng-class="value ? \'yes\':\'no\'">\n' +
+    '</div>');
 }]);
