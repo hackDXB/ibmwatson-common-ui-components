@@ -750,8 +750,7 @@ angular.module('watsonDropDown/watsonDropDown.html', []).run(['$templateCache', 
     '<div class="dropdown ibm-dropdown">\n' +
     '  <button class="btn ibm-dropdown__button" ng-class="myClass" type="button" id="{{::uniqueId}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">\n' +
     '    <span ng-if="title">{{title}}</span>\n' +
-    '    <span ng-if!="dropDownIcon" class="ibm-glyph--caret-down_24"></span>\n' +
-    '    <span ng-if="dropDownIcon" ng-class="dropDownIcon"></span>\n' +
+    '    <span ng-class="dropDownIcon ? dropDownIcon: \'ibm-glyph--caret-down_24\'"></span>\n' +
     '  </button>\n' +
     '  <ul class="dropdown-menu ibm-dropdown__menu ibm-dropdown__button--icon" ng-class="{\'ibm-dropdown__menu--icons\' : menuItems[0].icon}" aria-labelledby="{{::uniqueId}}">\n' +
     '    <li ng-repeat="menuItem in menuItems">\n' +
@@ -795,7 +794,7 @@ angular.module('watsonFooter/watsonFooter.html', []).run(['$templateCache', func
 angular.module('watsonLoading/watsonLoading.html', []).run(['$templateCache', function($templateCache) {
   $templateCache.put('watsonLoading/watsonLoading.html',
     '<div class="ibm-loading">\n' +
-    '  <div class="ibm-loading-img"></div>\n' +
+    '  <div class="ibm-loading-img" title="{{ loadingMessage ? loadingMessage : \'Loading\' }}"></div>\n' +
     '  <p class="ibm-loading-message" ng-if="loadingMessage">{{ loadingMessage }}</p>\n' +
     '</div>\n' +
     '');
