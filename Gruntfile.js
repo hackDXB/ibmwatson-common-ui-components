@@ -203,7 +203,8 @@ module.exports = function(grunt) {
       },
       injectSass: {
         files: [
-          'src/**/*.{scss,sass}'
+          'src/**/*.{scss,sass}',
+          '!src/ibmwatson-common-ui-components.scss'
         ],
         tasks: ['injector:sass']
       }
