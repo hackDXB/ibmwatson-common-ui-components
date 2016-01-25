@@ -837,7 +837,7 @@ angular.module('watsonSearch/watsonSearch.html', []).run(['$templateCache', func
 // Source: src/watsonYesNoToggle/watsonYesNoToggle.html.js
 angular.module('watsonYesNoToggle/watsonYesNoToggle.html', []).run(['$templateCache', function($templateCache) {
   $templateCache.put('watsonYesNoToggle/watsonYesNoToggle.html',
-    '<div class="yn-toggle" ng-click="toggle()" ng-class="value ? \'yes\':\'no\'">\n' +
+    '<div class="ibm-toggle" ng-click="toggle()" ng-class="value ? \'ibm-yes-toggle\':\'ibm-no-toggle\'">\n' +
     '</div>\n' +
     '');
 }]);

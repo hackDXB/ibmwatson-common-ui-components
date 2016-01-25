@@ -42,7 +42,7 @@ describe('Directive: watsonYesNoToggle', function () {
     scope.$digest();
 
     // Check that the compiled element contains the templated content
-    expect(element.children('yes').length > 0).toBe(true);
+    expect(element.children('ibm-yes-toggle').length > 0).toBe(true);
 
   });
 
@@ -58,7 +58,7 @@ describe('Directive: watsonYesNoToggle', function () {
     scope.value = false;
 
     // Check that the compiled element contains the templated content
-    expect(element.children('no').length > 0).toBe(true);
+    expect(element.children('ibm-no-toggle').length > 0).toBe(true);
 
   });
 
