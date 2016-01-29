@@ -782,9 +782,15 @@ angular.module('watsonFileUpload/watsonFileUpload.html', []).run(['$templateCach
 // Source: src/watsonFooter/watsonFooter.html.js
 angular.module('watsonFooter/watsonFooter.html', []).run(['$templateCache', function($templateCache) {
   $templateCache.put('watsonFooter/watsonFooter.html',
-    '<footer class="footer ibm-footer">\n' +
-    '  <ul class="list-inline ibm-list-inline">\n' +
-    '    <li>&#169; 2015 International Business Machines</li>\n' +
+    '<footer class="footer ibm-sg ibm-footer">\n' +
+    '  <a id="ibm-scroll-top" href="">\n' +
+    '    <span class="ibm-icon--top" aria-label="Back to top of page"></span>\n' +
+    '  </a>\n' +
+    '  <ul class="list-inline ibm-footer__list">\n' +
+    '    <li>&#169; 2016 IBM Watson</li>\n' +
+    '    <li><a href="https://console.ng.bluemix.net/?direct=classic/#/contactUs/cloudOEPaneId=contactUs">Contact</a></li>\n' +
+    '    <li><a href="http://www.ibm.com/privacy/us/en/?cm_mc_uid=43826050083314459611372&cm_mc_sid_50200000=1445996249">Privacy</a></li>\n' +
+    '    <li><a href="http://www-03.ibm.com/software/sla/sladb.nsf/sla/bm?Open&cm_mc_uid=43826050083314459611372&cm_mc_sid_50200000=1445996249">Terms of use</a></li>\n' +
     '  </ul>\n' +
     '</footer>\n' +
     '');
