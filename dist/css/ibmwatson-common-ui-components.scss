@@ -13,18 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
+// Component styles are injected through grunt
+// injector
+// Alerts
+
 .ibm-alert {
   padding: .7em 2em .5em 1em;
-  margin-bottom: 0; }
-  .ibm-alert .ibm-alert__close :hover {
-    color: #AD1625; }
+  margin-bottom: 0;
+
+  .ibm-alert__close :hover {
+    color: #AD1625;
+  }
+}
+
+// Clearable text box
 
 .ibm-clearable-textbox {
-  display: inline-block; }
-  .ibm-clearable-textbox input {
-    border-width: 0;
-    outline: none; }
-  .ibm-clearable-textbox .ibm-icon--close-cancel-error {
-    font-size: .8em; }
+	display: inline-block;
 
-/*# sourceMappingURL=ibmwatson-common-ui-components.css.map */
+	input {
+		border-width: 0;
+		outline: none;
+	}
+
+	.ibm-icon--close-cancel-error {
+    font-size: .8em;
+  }
+}
+
+// endinjector
