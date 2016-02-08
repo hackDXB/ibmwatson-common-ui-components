@@ -7,6 +7,14 @@ All notable changes to this project will be documented in this file and will fol
 * Fixed
 * Security
 
+## [0.0.7] - 2016-02-08 (Sprint 63)
+#### Added
+* Distributed the scss in the project
+#### Changed
+* Updated the footer
+#### Fixed
+* Location of images for toggle and loading directives
+
 ## [0.0.6] - 2016-01-18 (Sprint 62)
 #### Added
 * Accessibility fix for watsonLoading
