@@ -12,6 +12,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-injector');
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-string-replace');
 
   var foundModules = {};
 
@@ -91,6 +94,18 @@ module.exports = function(grunt) {
       }
     },
 
+    // Compiles Sass to CSS
+    sass: {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        files: {
+          'dist/css/ibmwatson-common-ui-components.css' : 'src/ibmwatson-common-ui-components.scss'
+        }
+      }
+    },
+
     // Compile Javascript into modules
     html2js: {
       dist: {
@@ -118,6 +133,43 @@ module.exports = function(grunt) {
       }
     },
 
+    injector: {
+      options: {
+
+      },
+      sass: {
+        options: {
+          transform: function(filePath) {
+            return '@import \'' + filePath.substring(1) + '\';';
+          },
+          starttag: '// injector',
+          endtag: '// endinjector'
+        },
+        files: {
+          'src/ibmwatson-common-ui-components.scss': [
+            'src/**/*.{scss,sass}',
+            '!src/ibmwatson-common-ui-components.scss'
+          ]
+        }
+      }
+    },
+
+    'string-replace': {
+      dist: {
+        files: {
+          'dist/css/<%= pkg.name %>.scss': 'src/<%= pkg.name %>.scss'
+        },
+        options: {
+          replacements: [{
+            pattern: /^\s*@import\s+\'(.*?)\';/gm,
+            replacement: function (match, capturedFilename) {
+              return grunt.file.read(capturedFilename);
+            }
+          }]
+        }
+      }
+    },
+
     // Test settings
     karma: {
       unit: {
@@ -141,7 +193,7 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {
-        
+
       },
       dist: {
         src: ['<%= concat.dist.dest %>'],
@@ -168,6 +220,13 @@ module.exports = function(grunt) {
       src: {
         files: ['src/**/*.html', 'src/**/*.js'],
         tasks: ['build']
+      },
+      injectSass: {
+        files: [
+          'src/**/*.{scss,sass}',
+          '!src/ibmwatson-common-ui-components.scss'
+        ],
+        tasks: ['injector:sass']
       }
     }
   });
@@ -203,6 +262,6 @@ module.exports = function(grunt) {
 
 
   // Default task(s).
-  grunt.registerTask('default', ['clean', 'bower', 'html2js', 'jshint','karma', 'build']);
-  grunt.registerTask('serve', ['clean', 'bower', 'html2js', 'jshint','karma', 'build','connect', 'watch']);
+  grunt.registerTask('default', ['clean', 'bower', 'injector:sass', 'html2js', 'jshint', 'karma', 'build', 'sass', 'string-replace']);
+  grunt.registerTask('serve', ['default', 'connect', 'watch']);
 };

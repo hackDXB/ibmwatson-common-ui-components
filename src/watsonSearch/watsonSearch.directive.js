@@ -17,27 +17,27 @@
 'use strict';
 
 angular.module('ibmwatson-common-ui-components.watsonSearch', [])
-    .directive('watsonSearch', function() {
-        return {
-            templateUrl: 'watsonSearch/watsonSearch.html',
-            restrict: 'E',
-            replace: true,
-            scope: {
-                placeHolderText: '=?',
-                action: '&',
-                searchText: '='
-            },
-            link: function(scope, element) {
-                element.bind('keydown keypress', function (event) {
-                    if(event.which === 13) {
-                        scope.$apply(function (){
-                            scope.action();
-                        });
+  .directive('watsonSearch', function search () {
+    return {
+      templateUrl : 'watsonSearch/watsonSearch.html',
+      restrict : 'E',
+      replace : true,
+      scope : {
+        placeHolderText : '=?',
+        action : '&',
+        searchText : '='
+      },
+      link : function (scope, element) {
+        element.bind('keydown keypress', function (event) {
+          if (event.which === 13) {
+            scope.$apply(function () {
+              scope.action();
+            });
 
-                        event.preventDefault();
-                    }
-                });
-            }
-        };
+            event.preventDefault();
+          }
+        });
+      }
+    };
 
-    });
+  });

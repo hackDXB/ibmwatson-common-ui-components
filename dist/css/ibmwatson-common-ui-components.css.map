@@ -1,0 +1,11 @@
+{
+	"version": 3,
+	"file": "ibmwatson-common-ui-components.css",
+	"sources": [
+		"../../src/ibmwatson-common-ui-components.scss",
+		"../../src/watsonAlerts/watsonAlerts.scss",
+		"../../src/watsonClearableTextBox/watsonClearableTextBox.scss"
+	],
+	"mappings": "AAAA;;;;;;;;;;;;;;IAcI;ACZJ,UAAU,CAAC;EACT,OAAO,EAAE,iBAAkB;EAC3B,aAAa,EAAE,CAAE,GAKlB;EAPD,UAAU,CAIR,iBAAiB,CAAC,MAAM,CAAC;IACvB,KAAK,EAAE,OAAQ,GAChB;;ACNH,sBAAsB,CAAC;EACtB,OAAO,EAAE,YAAa,GAUtB;EAXD,sBAAsB,CAGrB,KAAK,CAAC;IACL,YAAY,EAAE,CAAE;IAChB,OAAO,EAAE,IAAK,GACd;EANF,sBAAsB,CAQrB,6BAA6B,CAAC;IAC3B,SAAS,EAAE,IAAK,GACjB",
+	"names": []
+}

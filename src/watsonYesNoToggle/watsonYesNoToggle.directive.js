@@ -16,14 +16,20 @@
 
 'use strict';
 
-angular.module('ibmwatson-common-ui-components.watsonLoading', [])
-  .directive('watsonLoading', function loading () {
+angular.module('ibmwatson-common-ui-components.watsonYesNoToggle', [])
+  .directive('watsonYesNoToggle', function () {
     return {
-      templateUrl : 'watsonLoading/watsonLoading.html',
-      restrict : 'EA',
-      replace : true,
+      restrict : 'E',
       scope : {
-        loadingMessage : '='
+        value : '='
+      },
+      templateUrl : 'watsonYesNoToggle/watsonYesNoToggle.html',
+      link : function (scope) {
+        // Default value
+        scope.value = true;
+        scope.toggle = function () {
+          scope.value = !scope.value;
+        };
       }
     };
   });

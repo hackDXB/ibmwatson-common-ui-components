@@ -16,7 +16,7 @@
 
 'use strict';
 
-angular.module('ibmwatson-common-ui-components',[
+angular.module('ibmwatson-common-ui-components', [
     'ibmwatson-common-ui-components.watsonAlerts',
     'ibmwatson-common-ui-components.watsonFooter',
     'ibmwatson-common-ui-components.watsonLoading',
@@ -25,5 +25,6 @@ angular.module('ibmwatson-common-ui-components',[
     'ibmwatson-common-ui-components.watsonFileUpload',
     'ibmwatson-common-ui-components.watsonModal',
     'ibmwatson-common-ui-components.watsonAutoFitScreen',
-    'ibmwatson-common-ui-components.watsonClearableTextBox'
-    ]);
+    'ibmwatson-common-ui-components.watsonClearableTextBox',
+    'ibmwatson-common-ui-components.watsonYesNoToggle'
+]);

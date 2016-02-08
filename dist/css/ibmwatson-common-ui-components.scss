@@ -14,16 +14,32 @@
  * limitations under the License.
  **/
 
-'use strict';
+// Component styles are injected through grunt
+// injector
+// Alerts
 
-angular.module('ibmwatson-common-ui-components.watsonLoading', [])
-  .directive('watsonLoading', function loading () {
-    return {
-      templateUrl : 'watsonLoading/watsonLoading.html',
-      restrict : 'EA',
-      replace : true,
-      scope : {
-        loadingMessage : '='
-      }
-    };
-  });
+.ibm-alert {
+  padding: .7em 2em .5em 1em;
+  margin-bottom: 0;
+
+  .ibm-alert__close :hover {
+    color: #AD1625;
+  }
+}
+
+// Clearable text box
+
+.ibm-clearable-textbox {
+	display: inline-block;
+
+	input {
+		border-width: 0;
+		outline: none;
+	}
+
+	.ibm-icon--close-cancel-error {
+    font-size: .8em;
+  }
+}
+
+// endinjector

@@ -14,16 +14,8 @@
  * limitations under the License.
  **/
 
-'use strict';
-
-angular.module('ibmwatson-common-ui-components.watsonLoading', [])
-  .directive('watsonLoading', function loading () {
-    return {
-      templateUrl : 'watsonLoading/watsonLoading.html',
-      restrict : 'EA',
-      replace : true,
-      scope : {
-        loadingMessage : '='
-      }
-    };
-  });
+// Component styles are injected through grunt
+// injector
+@import 'src/watsonAlerts/watsonAlerts.scss';
+@import 'src/watsonClearableTextBox/watsonClearableTextBox.scss';
+// endinjector

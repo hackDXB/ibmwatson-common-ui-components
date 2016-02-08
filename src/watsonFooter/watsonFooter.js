@@ -17,10 +17,10 @@
 'use strict';
 
 angular.module('ibmwatson-common-ui-components.watsonFooter', [])
-  .directive('watsonFooter', function() {
+  .directive('watsonFooter', function footer () {
     return {
-      templateUrl: 'watsonFooter/watsonFooter.html',
-      restrict: 'EA',
-      replace: true
+      templateUrl : 'watsonFooter/watsonFooter.html',
+      restrict : 'EA',
+      replace : true
     };
   });

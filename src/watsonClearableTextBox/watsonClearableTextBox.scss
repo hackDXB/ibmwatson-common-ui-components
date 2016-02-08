@@ -1,9 +1,14 @@
-/* Styles for watsonClearableTextBox */
-.ibmwatson-clearable-textbox {
-	display:inline-block;
-}
+// Clearable text box
 
-.ibmwatson-clearable-textbox input {
-	border-width:0;
-	outline: none;
+.ibm-clearable-textbox {
+	display: inline-block;
+
+	input {
+		border-width: 0;
+		outline: none;
+	}
+
+	.ibm-icon--close-cancel-error {
+    font-size: .8em;
+  }
 }

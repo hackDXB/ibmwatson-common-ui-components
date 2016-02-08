@@ -16,15 +16,14 @@
 
 'use strict';
 
-describe('Directive: watsonFileUpload', function () {
+describe('Directive: watsonLoading', function () {
   var $compile,
-    $rootScope,
-    options;
+    $rootScope;
 
   // Load the myApp module, which contains the directive
   beforeEach(module('ibmwatson-common-ui-components'));
 
-  beforeEach(module('watsonFileUpload/watsonFileUpload.html'));
+  beforeEach(module('watsonLoading/watsonLoading.html'));
 
   // Store references to $rootScope and $compile
   // so they are available to all tests in this describe block
@@ -32,11 +31,6 @@ describe('Directive: watsonFileUpload', function () {
     // The injector unwraps the underscores (_) from around the parameter names when matching
     $compile = _$compile_;
     $rootScope = _$rootScope_;
-
-    options = {
-      large : 'true',
-      format : 'url'
-    };
   }));
 
   it('should replace the element with the appropriate content', function () {
@@ -44,12 +38,11 @@ describe('Directive: watsonFileUpload', function () {
     var scope = $rootScope.$new();
 
     // Compile a piece of HTML containing the directive
-    var element = $compile('<watson-file-upload file="file"></watson-file-upload>')(scope);
-
+    var element = $compile('<watson-loading></watson-loading>')(scope);
     scope.$digest();
 
     // Check that the compiled element contains the templated content
-    expect(element.hasClass('ibm-form__group')).toBe(true);
+    expect(element.find('div').hasClass('ibm-loading-graphic')).toBe(true);
 
   });
 
@@ -57,23 +50,14 @@ describe('Directive: watsonFileUpload', function () {
 
     var scope = $rootScope.$new();
 
-    scope.file = '';
-
-    scope.options = options;
+    scope.loadingMessage = 'Waiting For Cake';
 
     // Compile a piece of HTML containing the directive
-    var element = $compile('<div><watson-file-upload large="true" file="scope.file" format="options.format" ></watson-file-upload></div>')(scope);
+    var element = $compile('<watson-loading loading-message="loadingMessage"></watson-loading>')(scope);
 
     scope.$digest();
 
     // Check that the compiled element contains the templated content
-    expect(element.html()).toContain('ibm-file-upload__overlay--large');
-
-    element = $compile('<div><watson-file-upload file="scope.file" format="options.format" ></watson-file-upload></div>')(scope);
-    scope.$digest();
-
-    // Check that the compiled element contains the templated content
-    expect(element.html()).not.toContain('ibm-file-upload__overlay--large');
+    expect(element.html()).toContain(scope.loadingMessage);
   });
-
 });

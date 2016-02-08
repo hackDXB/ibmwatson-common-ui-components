@@ -17,57 +17,56 @@
 'use strict';
 
 angular.module('ibmwatson-common-ui-components.watsonModal', [])
-    .directive('watsonModal', function() {
-        var uniqueId = 0;
-        return {
-            templateUrl: 'watsonModal/watsonModal.html',
-            restrict: 'E',
-            replace: true,
-            transclude: true,
-            scope: {
-                type: '=?',
-                title: '=',
-                modalId: '=',
-                okTitle: '=',
-                cancelTitle: '=?',
-                action: '&',
-                disableOkExpression: '=?'
-            },
-            link: function(scope, element) {
-                scope.uniqueId = 'watsonModal' + uniqueId++;
+  .directive('watsonModal', function modal () {
+    var uniqueId = 0;
+    return {
+      templateUrl : 'watsonModal/watsonModal.html',
+      restrict : 'E',
+      replace : true,
+      transclude : true,
+      scope : {
+        type : '=?',
+        title : '=',
+        modalId : '=',
+        okTitle : '=',
+        cancelTitle : '=?',
+        action : '&',
+        disableOkExpression : '=?'
+      },
+      link : function (scope, element) {
+        scope.uniqueId = 'watsonModal' + uniqueId++;
 
-                var TYPE = {
-                    SUCCESS: 'success',
-                    ERROR: 'error',
-                    DEFAULT: 'default',
-                    WARNING: 'warning'
-                };
-
-                switch (scope.type) {
-                    case TYPE.SUCCESS:
-                        scope.modalType = 'ibm-modal--success';
-                        break;
-                    case TYPE.ERROR:
-                        scope.modalType = 'ibm-modal--error';
-                        break;
-                    case TYPE.DEFAULT:
-                        scope.modalType = 'ibm-modal--default';
-                        break;
-                    case TYPE.WARNING:
-                        scope.modalType = 'ibm-modal--warning';
-                        break;
-                    default:
-                        scope.modalType = 'ibm-modal--default';
-                        break;
-                }
-
-                var okButton = element.find('.okButton');
-
-                okButton.on('click', function() {
-                    $(element).modal('hide');
-                    scope.action();
-                });
-            }
+        var TYPE = {
+          SUCCESS : 'success',
+          ERROR : 'error',
+          DEFAULT : 'default',
+          WARNING : 'warning'
         };
-    });
 
+        switch (scope.type) {
+          case TYPE.SUCCESS:
+            scope.modalType = 'ibm-modal--success';
+            break;
+          case TYPE.ERROR:
+            scope.modalType = 'ibm-modal--error';
+            break;
+          case TYPE.DEFAULT:
+            scope.modalType = 'ibm-modal--default';
+            break;
+          case TYPE.WARNING:
+            scope.modalType = 'ibm-modal--warning';
+            break;
+          default:
+            scope.modalType = 'ibm-modal--default';
+            break;
+        }
+
+        var okButton = element.find('.okButton');
+
+        okButton.on('click', function () {
+          $(element).modal('hide');
+          scope.action();
+        });
+      }
+    };
+  });

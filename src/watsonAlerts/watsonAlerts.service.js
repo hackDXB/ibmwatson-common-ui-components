@@ -29,18 +29,18 @@
  * }
  */
 angular.module('ibmwatson-common-ui-components.watsonAlerts')
-  .factory('watsonAlerts', ['$log', function init ($log) {
+  .factory('watsonAlerts', function init () {
 
     var LEVELS = [ 'success', 'info', 'warning', 'error' ];
 
     var alerts = [];
 
     /**
-    * Add an alert to the list of alerts
-    */
-    function add( /*Object*/ alert) {
-      $log.debug('add', alert, alerts);
-
+     * Add an alert to the list of alerts
+     * @param {Object} alert Alert object
+     * @returns {Object} The added alert
+     */
+    function add (/*Object*/ alert) {
       alert.level = alert.level || LEVELS[1];
       if (LEVELS.indexOf(alert.level) < 0) {
         alert.level = LEVELS[1];
@@ -52,7 +52,7 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
       }
 
       // Create a dismiss function to allow the alert to be removed
-      alert.dismiss = function() {
+      alert.dismiss = function dismiss () {
         remove.apply(this, [alert]);
       };
 
@@ -62,29 +62,32 @@ angular.module('ibmwatson-common-ui-components.watsonAlerts')
     }
 
     /**
-    * Remove an alert from the list of alerts
-    */
-    function remove( /*Object*/ alert) {
-      $log.debug(remove, alert);
+     * Remove an alert from the list of alerts
+     * @param {Object} alert Alert object
+     * @returns {Object} The removed alert
+     */
+    function remove (/*Object*/ alert) {
       var index = alerts.indexOf(alert);
       if (index >= 0) {
-        alerts.splice(index, 1);
+        return alerts.splice(index, 1);
       }
+      return null;
     }
 
     /**
-    * Remove all current alerts
-    */
-    function clear() {
+     * Remove all current alerts
+     * @returns {undefined}
+     */
+    function clear () {
       alerts.splice(0, alerts.length);
     }
 
     // Public API here
     return {
-      'alerts': alerts,
-      'add': add,
-      'remove': remove,
-      'clear': clear
+      alerts : alerts,
+      add : add,
+      remove : remove,
+      clear : clear
     };
 
-  }]);
+  });

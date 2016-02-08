@@ -16,76 +16,69 @@
 
 'use strict';
 
-describe('Directive: watsonDropDown', function() {
-    var $compile,
-        $rootScope,
-        dropDownData,
-        myAction,
-        dropDownClicked;
+describe('Directive: watsonDropDown', function () {
+  var $compile,
+  $rootScope,
+  dropDownData;
 
 
-    // Load the myApp module, which contains the directive
-    beforeEach(module('ibmwatson-common-ui-components'));
+  // Load the myApp module, which contains the directive
+  beforeEach(module('ibmwatson-common-ui-components'));
 
-    beforeEach(module('watsonDropDown/watsonDropDown.html'));
+  beforeEach(module('watsonDropDown/watsonDropDown.html'));
 
-    // Store references to $rootScope and $compile
-    // so they are available to all tests in this describe block
-    beforeEach(inject(function(_$compile_, _$rootScope_) {
-        // The injector unwraps the underscores (_) from around the parameter names when matching
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
+  // Store references to $rootScope and $compile
+  // so they are available to all tests in this describe block
+  beforeEach(inject(function (_$compile_, _$rootScope_) {
+    // The injector unwraps the underscores (_) from around the parameter names when matching
+    $compile = _$compile_;
+    $rootScope = _$rootScope_;
 
-        myAction = function(menuItem) {
-            dropDownClicked = 'menu item clicked ' + menuItem.name;
-        };
+    dropDownData = {
+      items : [
+        {
+          name : 'cake',
+          icon : 'ibm-icon--relationship'
+        },
+        {
+          name : 'biscuits',
+          icon : 'ibm-icon--satellitedish'
+        },
+        {
+          name : 'cheese'
+        }
+      ],
+      title : 'food',
+      myClass : 'ibm-btn--primary'
+    };
+  }));
 
-        dropDownData = {
-            items: [
-                {name: 'cake',
-                    icon: 'ibm-icon--relationship'},
-                {name: 'biscuits',
-                    icon: 'ibm-icon--satellitedish'},
-                {name: 'cheese'}
-            ],
-            title: 'food',
-            myClass: 'ibm-btn--primary'
-        };
+  it('should replace the element with the appropriate content', function () {
+    var scope = $rootScope.$new();
 
+    // Compile a piece of HTML containing the directive
+    var element = $compile('<watson-drop-down menu-items="dropDownData.items" title="title" my-class="myClass" action="myAction"></watson-drop-down>')(scope);
 
-    }));
+    scope.$digest();
 
-    it('should replace the element with the appropriate content', function() {
+    // Check that the compiled element contains the templated content
+    expect(element.hasClass('dropdown ibm-dropdown')).toBe(true);
 
-        var scope = $rootScope.$new();
+  });
 
+  it('should reflects changes to the scope', function () {
+    var scope = $rootScope.$new();
 
-        // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-drop-down menu-items="dropDownData.items" title="title" my-class="myClass" action="myAction"></watson-drop-down>')(scope);
+    scope.dropDownData = dropDownData;
 
-        scope.$digest();
+    // Compile a piece of HTML containing the directive
+    var element = $compile('<watson-drop-down menu-items="dropDownData.items" title="dropDownData.title" my-class="dropDownData.myClass" action="myAction"></watson-drop-down>')(scope);
 
-        // Check that the compiled element contains the templated content
-        expect(element.hasClass('dropdown ibm-dropdown')).toBe(true);
+    scope.$digest();
 
-    });
-
-    it('should reflects changes to the scope', function() {
-
-        var scope = $rootScope.$new();
-
-        scope.dropDownData = dropDownData;
-
-        // Compile a piece of HTML containing the directive
-        var element = $compile('<watson-drop-down menu-items="dropDownData.items" title="dropDownData.title" my-class="dropDownData.myClass" action="myAction"></watson-drop-down>')(scope);
-
-        scope.$digest();
-
-        // Check that the compiled element contains the templated content
-        expect(element.html()).toContain(dropDownData.items[0].name);
-        expect(element.html()).toContain(dropDownData.title);
-    });
-
+    // Check that the compiled element contains the templated content
+    expect(element.html()).toContain(dropDownData.items[0].name);
+    expect(element.html()).toContain(dropDownData.title);
+  });
 
 });
-

@@ -13,17 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+.ibm-alert {
+  padding: .7em 2em .5em 1em;
+  margin-bottom: 0; }
+  .ibm-alert .ibm-alert__close :hover {
+    color: #AD1625; }
 
-'use strict';
+.ibm-clearable-textbox {
+  display: inline-block; }
+  .ibm-clearable-textbox input {
+    border-width: 0;
+    outline: none; }
+  .ibm-clearable-textbox .ibm-icon--close-cancel-error {
+    font-size: .8em; }
 
-angular.module('ibmwatson-common-ui-components.watsonLoading', [])
-  .directive('watsonLoading', function loading () {
-    return {
-      templateUrl : 'watsonLoading/watsonLoading.html',
-      restrict : 'EA',
-      replace : true,
-      scope : {
-        loadingMessage : '='
-      }
-    };
-  });
+/*# sourceMappingURL=ibmwatson-common-ui-components.css.map */

@@ -1,5 +1,5 @@
 /node_modules
 /bower_components
-
+/.idea
 # Ignore Generated Template Scripts
 /src/**/*.html.js
