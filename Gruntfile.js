@@ -14,6 +14,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-injector');
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-string-replace');
 
   var foundModules = {};
 
@@ -95,6 +96,9 @@ module.exports = function(grunt) {
 
     // Compiles Sass to CSS
     sass: {
+      options: {
+        sourceMap: true
+      },
       dist: {
         files: {
           'dist/css/ibmwatson-common-ui-components.css' : 'src/ibmwatson-common-ui-components.scss'
@@ -146,6 +150,22 @@ module.exports = function(grunt) {
             'src/**/*.{scss,sass}',
             '!src/ibmwatson-common-ui-components.scss'
           ]
+        }
+      }
+    },
+
+    'string-replace': {
+      dist: {
+        files: {
+          'dist/css/<%= pkg.name %>.scss': 'src/<%= pkg.name %>.scss'
+        },
+        options: {
+          replacements: [{
+            pattern: /^\s*@import\s+\'(.*?)\';/gm,
+            replacement: function (match, capturedFilename) {
+              return grunt.file.read(capturedFilename);
+            }
+          }]
         }
       }
     },
@@ -242,6 +262,6 @@ module.exports = function(grunt) {
 
 
   // Default task(s).
-  grunt.registerTask('default', ['clean', 'bower', 'injector:sass', 'html2js', 'jshint', 'karma', 'build', 'sass']);
-  grunt.registerTask('serve', ['clean', 'bower', 'injector:sass', 'html2js', 'jshint', 'karma', 'build', 'sass', 'connect', 'watch']);
+  grunt.registerTask('default', ['clean', 'bower', 'injector:sass', 'html2js', 'jshint', 'karma', 'build', 'sass', 'string-replace']);
+  grunt.registerTask('serve', ['default', 'connect', 'watch']);
 };
