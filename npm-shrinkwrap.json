@@ -1,6 +1,6 @@
 {
   "name": "ibmwatson-common-ui-components",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "dependencies": {
     "express": {
       "version": "4.13.3",
