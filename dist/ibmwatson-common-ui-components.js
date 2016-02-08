@@ -799,9 +799,9 @@ angular.module('watsonFooter/watsonFooter.html', []).run(['$templateCache', func
 // Source: src/watsonLoading/watsonLoading.html.js
 angular.module('watsonLoading/watsonLoading.html', []).run(['$templateCache', function($templateCache) {
   $templateCache.put('watsonLoading/watsonLoading.html',
-    '<div class="ibm-loading">\n' +
-    '  <div class="ibm-loading-img" title="{{ loadingMessage ? loadingMessage : \'Loading\' }}"></div>\n' +
-    '  <p class="ibm-loading-message" ng-if="loadingMessage">{{ loadingMessage }}</p>\n' +
+    '<div>\n' +
+    '  <div class="ibm-loading-graphic" title="{{ loadingMessage ? loadingMessage : \'Loading\' }}"></div>\n' +
+    '  <p ng-if="loadingMessage">{{ loadingMessage }}</p>\n' +
     '</div>\n' +
     '');
 }]);
