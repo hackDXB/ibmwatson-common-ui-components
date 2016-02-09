@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file and will fol
 * Fixed
 * Security
 
+## [0.0.8] - 2016-02-09 (Sprint 63)
+#### Added
+* Specified which files are distributed via `npm pack`
+
 ## [0.0.7] - 2016-02-08 (Sprint 63)
 #### Added
 * Distributed the scss in the project
