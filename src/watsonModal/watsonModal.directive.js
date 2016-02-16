@@ -31,7 +31,8 @@ angular.module('ibmwatson-common-ui-components.watsonModal', [])
         okTitle : '=',
         cancelTitle : '=?',
         action : '&',
-        disableOkExpression : '=?'
+        disableOkExpression : '=?',
+        hideOkExpression: '=?'
       },
       link : function (scope, element) {
         scope.uniqueId = 'watsonModal' + uniqueId++;
