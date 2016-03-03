@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file and will fol
 * Fixed
 * Security
 
+## [0.0.9] - 2016-03-03 (Sprint 64)
+#### Changed
+* Can hide the watsonModal OK button (PR #38)
+
 ## [0.0.8] - 2016-02-09 (Sprint 63)
 #### Added
 * Specified which files are distributed via `npm pack`

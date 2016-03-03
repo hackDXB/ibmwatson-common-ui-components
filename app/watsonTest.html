@@ -59,13 +59,28 @@
     <div id="modal">
         <div class="row">
             <h1>Modal</h1>
-            <button type="button" class="btn btn-default ibm-btn ibm-btn--primary" data-toggle="modal" data-target="#{{modal.myModalId}}">
-                Open modal
+            <button type="button" class="btn btn-default ibm-btn ibm-btn--primary" data-toggle="modal" data-target="#{{modalRegular.myModalId}}">
+                Full modal
             </button>
-            <watson-modal type="modal.type" title="modal.title" action="myModalAction()" id="{{modal.myModalId}}" ok-title="modal.okTitle" cancel-title="modal.cancelTitle" disable-ok-expression="modal.disable">
+            <watson-modal type="modalRegular.type" title="modalRegular.title" action="myModalAction()" id="{{modalRegular.myModalId}}" ok-title="modalRegular.okTitle" cancel-title="modalRegular.cancelTitle" disable-ok-expression="modalRegular.disable" hide-ok-expression="modalRegular.hide">
                 <div><p>Are you sure you want to take this action?</p></div>
             </watson-modal>
-            <p>{{modalClicked}}</p>
+
+            <button type="button" class="btn btn-default ibm-btn ibm-btn--primary" data-toggle="modal" data-target="#{{modalDisable.myModalId}}">
+                Disabled Button modal
+            </button>
+            <watson-modal type="modalDisable.type" title="modalDisable.title" action="myModalAction()" id="{{modalDisable.myModalId}}" ok-title="modalDisable.okTitle" cancel-title="modalDisable.cancelTitle" disable-ok-expression="modalDisable.disable" hide-ok-expression="modalDisable.hide">
+                <div><p>Are you sure you want to take this action?</p></div>
+            </watson-modal>
+
+            <button type="button" class="btn btn-default ibm-btn ibm-btn--primary" data-toggle="modal" data-target="#{{modalHide.myModalId}}">
+                Hidden Button modal
+            </button>
+            <watson-modal type="modalHide.type" title="modalHide.title" action="myModalAction()" id="{{modalHide.myModalId}}" ok-title="modalHide.okTitle" cancel-title="modalHide.cancelTitle" disable-ok-expression="modalHide.disable" hide-ok-expression="modalHide.hide">
+                <div><p>Are you sure you want to take this action?</p></div>
+            </watson-modal>
+            <p><div ng-bind="modalClicked"></div></p>
+
         </div>
         <div class="row">
             <h2>Modal Options</h2>
@@ -77,6 +92,7 @@
                 <li class="ibm-list__item">okTitle: The text to appear on the ok button</li>
                 <li class="ibm-list__item">cancelTitle &lt;optional&gt;: The function to call when the modal is closed</li>
                 <li class="ibm-list__item">disableOkExpression &lt;optional&gt;: The expression to determine if the ok button should be disabled</li>
+                <li class="ibm-list__item">hideOkExpression &lt;optional&gt;: The expression to determine if the ok button should be hidden</li>
             </ul>
         </div>
     </div>

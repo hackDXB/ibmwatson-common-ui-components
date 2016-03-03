@@ -64,13 +64,34 @@
       /**
        * MODAL
        */
-      $scope.modal = {
+      $scope.modalRegular = {
         type : 'success',
-        myModalId : 'myModalId',
+        myModalId : 'modalRegular',
         title : 'Are you sure?',
         okTitle : 'OK',
         cancelTitle : 'Cancel',
-        disable : true
+        disable : false,
+        hide: false
+      };
+
+      $scope.modalDisable = {
+        type : 'success',
+        myModalId : 'modalDisable',
+        title : 'Are you sure?',
+        okTitle : 'OK',
+        cancelTitle : 'Cancel',
+        disable : true,
+        hide: false
+      };
+
+      $scope.modalHide = {
+        type : 'success',
+        myModalId : 'modalHide',
+        title : 'Are you sure?',
+        okTitle : 'OK',
+        cancelTitle : 'Cancel',
+        disable : true,
+        hide: true
       };
 
       $scope.myModalAction = function () {
