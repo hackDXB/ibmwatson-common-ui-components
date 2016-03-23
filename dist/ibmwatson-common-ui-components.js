@@ -598,13 +598,13 @@ angular.module('ibmwatson-common-ui-components.watsonModal', [])
       transclude : true,
       scope : {
         type : '=?',
-        title : '=',
+        modalTitle : '=',
         modalId : '=',
         okTitle : '=',
         cancelTitle : '=?',
         action : '&',
         disableOkExpression : '=?',
-        hideOkExpression: '=?'
+        hideOkExpression : '=?'
       },
       link : function (scope, element) {
         scope.uniqueId = 'watsonModal' + uniqueId++;
@@ -820,7 +820,7 @@ angular.module('watsonModal/watsonModal.html', []).run(['$templateCache', functi
     '        <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
     '          <span class="ibm-icon--close-cancel-error" aria-hidden="true"></span>\n' +
     '        </button>\n' +
-    '        <h3 class="modal-title" id="{{::uniqueId}}">{{title}}</h3>\n' +
+    '        <h3 class="modal-title" id="{{::uniqueId}}">{{modalTitle}}</h3>\n' +
     '      </div>\n' +
     '      <div class="modal-body ibm-modal__body">\n' +
     '        <div ng-transclude></div>\n' +

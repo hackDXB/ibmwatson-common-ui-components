@@ -39,7 +39,7 @@ describe('Directive: watsonModal', function () {
       options =  {
         type : 'confirm',
         myModalId : 'myModalId',
-        title : 'Are you sure?',
+        modalTitle : 'Are you sure?',
         okTitle : 'OK',
         cancelTitle : 'Cancel'
       };
@@ -50,7 +50,7 @@ describe('Directive: watsonModal', function () {
       var scope = $rootScope.$new();
 
       // Compile a piece of HTML containing the directive
-      var element = $compile('<watson-modal title="options.title" action="myModalAction()" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
+      var element = $compile('<watson-modal modal-title="options.modalTitle" action="myModalAction()" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
 
       scope.$digest();
 
@@ -66,12 +66,12 @@ describe('Directive: watsonModal', function () {
       scope.options = options;
 
       // Compile a piece of HTML containing the directive
-      var element = $compile('<watson-modal title="options.title" action="myModalAction()" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
+      var element = $compile('<watson-modal modal-title="options.modalTitle" action="myModalAction()" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
 
       scope.$digest();
 
       // Check that the compiled element contains the templated content
-      expect(element.html()).toContain(options.title);
+      expect(element.html()).toContain(options.modalTitle);
       expect(element.html()).toContain(options.okTitle);
       expect(element.html()).toContain(options.cancelTitle);
 
@@ -86,7 +86,7 @@ describe('Directive: watsonModal', function () {
       scope.myModalAction = myModalAction;
 
       // Compile a piece of HTML containing the directive
-      var element = $compile('<watson-modal title="options.title" value="{{options.okTitle}}" action="myModalAction" modal-Id="options.myModalId" ok-title="options.okTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
+      var element = $compile('<watson-modal modal-title="options.modalTitle" value="{{options.okTitle}}" action="myModalAction" modal-Id="options.myModalId" ok-title="options.okTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
 
       scope.$digest();
 
@@ -107,7 +107,7 @@ describe('Directive: watsonModal', function () {
       scope.myModalAction = myModalAction;
 
       // Compile a piece of HTML containing the directive
-      var element = $compile('<watson-modal title="options.title"action="myModalAction" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
+      var element = $compile('<watson-modal modal-title="options.modalTitle" action="myModalAction" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
 
       scope.$digest();
 
@@ -125,7 +125,7 @@ describe('Directive: watsonModal', function () {
       scope.myModalAction = myModalAction;
 
       // Compile a piece of HTML containing the directive
-      var element = $compile('<watson-modal title="options.title"action="myModalAction" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
+      var element = $compile('<watson-modal modal-title="options.title" action="myModalAction" modal-Id="options.myModalId" ok-title="options.okTitle" cancel-title="options.cancelTitle"><div><p>Are you sure you want to take this action?</p></div></watson-modal>')(scope);
 
       scope.$digest();
 
