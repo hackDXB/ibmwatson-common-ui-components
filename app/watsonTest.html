@@ -142,7 +142,34 @@
         </div>
     </div>
 
-
+    <div id="Footer">
+        <div class="row">
+            <h1>Footer</h1>
+            <watson-footer></watson-footer>
+        </div>
+        <div class="row">
+            <h2>Footer Options</h2>
+            <ul class="ibm-list">
+                <li class="ibm-list__item">translations &lt;optional&gt;: a literal object map representing the link-texts as properties with corresponding translation strings, example usage below (in German),
+                    <ul class="ibm-list">
+                        <li class="ibm-list__item">contact: 'Kontakt'</li>
+                        <li class="ibm-list__item">privacy: 'Privatsphäre'</li>
+                        <li class="ibm-list__item">terms: 'Nutzungsbedingungen'</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <h2>Footer Sample Usage with Translations</h2>
+            <h3>HTML:</h3>
+            <p>Example below demonstrates how you would pass translations with an object literal</p>
+            <p><code>&lt;watson-footer translations="{contact : 'Kontakt', privacy : 'Privatsphäre', terms : 'Nutzungsbedingungen'}"&gt;&lt;/watson-footer&gt;</code></p>
+            <h3>Result:</h3>
+            <watson-footer translations="{contact : 'Kontakt', privacy : 'Privatsphäre', terms : 'Nutzungsbedingungen'}"></watson-footer>
+            <p>Note: Default texts are used when no translations are provided for any of the texts.</p>
+        </div>
+        <div class="row"></div>
+    </div>
 
 </div>
 
