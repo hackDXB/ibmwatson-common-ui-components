@@ -535,7 +535,10 @@ angular.module('ibmwatson-common-ui-components.watsonFooter', [])
     return {
       templateUrl : 'watsonFooter/watsonFooter.html',
       restrict : 'EA',
-      replace : true
+      replace : true,
+      scope : {
+        translations : '='
+      }
     };
   });
 
@@ -595,13 +598,13 @@ angular.module('ibmwatson-common-ui-components.watsonModal', [])
       transclude : true,
       scope : {
         type : '=?',
-        title : '=',
+        modalTitle : '=',
         modalId : '=',
         okTitle : '=',
         cancelTitle : '=?',
         action : '&',
         disableOkExpression : '=?',
-        hideOkExpression: '=?'
+        hideOkExpression : '=?'
       },
       link : function (scope, element) {
         scope.uniqueId = 'watsonModal' + uniqueId++;
@@ -789,9 +792,9 @@ angular.module('watsonFooter/watsonFooter.html', []).run(['$templateCache', func
     '  </a>\n' +
     '  <ul class="list-inline ibm-footer__list">\n' +
     '    <li>&#169; 2016 IBM Watson</li>\n' +
-    '    <li><a href="https://console.ng.bluemix.net/?direct=classic/#/contactUs/cloudOEPaneId=contactUs">Contact</a></li>\n' +
-    '    <li><a href="http://www.ibm.com/privacy/us/en/?cm_mc_uid=43826050083314459611372&cm_mc_sid_50200000=1445996249">Privacy</a></li>\n' +
-    '    <li><a href="http://www-03.ibm.com/software/sla/sladb.nsf/sla/bm?Open&cm_mc_uid=43826050083314459611372&cm_mc_sid_50200000=1445996249">Terms of use</a></li>\n' +
+    '    <li><a href="https://console.ng.bluemix.net/?direct=classic/#/contactUs/cloudOEPaneId=contactUs">{{ translations.contact || \'Contact\' }}</a></li>\n' +
+    '    <li><a href="http://www.ibm.com/privacy/us/en/?cm_mc_uid=43826050083314459611372&cm_mc_sid_50200000=1445996249">{{ translations.privacy || \'Privacy\' }}</a></li>\n' +
+    '    <li><a href="http://www-03.ibm.com/software/sla/sladb.nsf/sla/bm?Open&cm_mc_uid=43826050083314459611372&cm_mc_sid_50200000=1445996249">{{ translations.terms || \'Terms of use\' }}</a></li>\n' +
     '  </ul>\n' +
     '</footer>\n' +
     '');
@@ -817,7 +820,7 @@ angular.module('watsonModal/watsonModal.html', []).run(['$templateCache', functi
     '        <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
     '          <span class="ibm-icon--close-cancel-error" aria-hidden="true"></span>\n' +
     '        </button>\n' +
-    '        <h3 class="modal-title" id="{{::uniqueId}}">{{title}}</h3>\n' +
+    '        <h3 class="modal-title" id="{{::uniqueId}}">{{modalTitle}}</h3>\n' +
     '      </div>\n' +
     '      <div class="modal-body ibm-modal__body">\n' +
     '        <div ng-transclude></div>\n' +

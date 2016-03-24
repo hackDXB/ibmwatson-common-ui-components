@@ -67,31 +67,31 @@
       $scope.modalRegular = {
         type : 'success',
         myModalId : 'modalRegular',
-        title : 'Are you sure?',
+        modalTitle : 'Are you sure?',
         okTitle : 'OK',
         cancelTitle : 'Cancel',
         disable : false,
-        hide: false
+        hide : false
       };
 
       $scope.modalDisable = {
         type : 'success',
         myModalId : 'modalDisable',
-        title : 'Are you sure?',
+        modalTitle : 'Are you sure?',
         okTitle : 'OK',
         cancelTitle : 'Cancel',
         disable : true,
-        hide: false
+        hide : false
       };
 
       $scope.modalHide = {
         type : 'success',
         myModalId : 'modalHide',
-        title : 'Are you sure?',
+        modalTitle : 'Are you sure?',
         okTitle : 'OK',
         cancelTitle : 'Cancel',
         disable : true,
-        hide: true
+        hide : true
       };
 
       $scope.myModalAction = function () {

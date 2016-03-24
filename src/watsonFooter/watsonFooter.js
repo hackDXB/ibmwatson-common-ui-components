@@ -21,6 +21,9 @@ angular.module('ibmwatson-common-ui-components.watsonFooter', [])
     return {
       templateUrl : 'watsonFooter/watsonFooter.html',
       restrict : 'EA',
-      replace : true
+      replace : true,
+      scope : {
+        translations : '='
+      }
     };
   });

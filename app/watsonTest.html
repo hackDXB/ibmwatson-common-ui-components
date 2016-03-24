@@ -62,21 +62,21 @@
             <button type="button" class="btn btn-default ibm-btn ibm-btn--primary" data-toggle="modal" data-target="#{{modalRegular.myModalId}}">
                 Full modal
             </button>
-            <watson-modal type="modalRegular.type" title="modalRegular.title" action="myModalAction()" id="{{modalRegular.myModalId}}" ok-title="modalRegular.okTitle" cancel-title="modalRegular.cancelTitle" disable-ok-expression="modalRegular.disable" hide-ok-expression="modalRegular.hide">
+            <watson-modal type="modalRegular.type" modal-title="modalRegular.modalTitle" action="myModalAction()" id="{{modalRegular.myModalId}}" ok-title="modalRegular.okTitle" cancel-title="modalRegular.cancelTitle" disable-ok-expression="modalRegular.disable" hide-ok-expression="modalRegular.hide">
                 <div><p>Are you sure you want to take this action?</p></div>
             </watson-modal>
 
             <button type="button" class="btn btn-default ibm-btn ibm-btn--primary" data-toggle="modal" data-target="#{{modalDisable.myModalId}}">
                 Disabled Button modal
             </button>
-            <watson-modal type="modalDisable.type" title="modalDisable.title" action="myModalAction()" id="{{modalDisable.myModalId}}" ok-title="modalDisable.okTitle" cancel-title="modalDisable.cancelTitle" disable-ok-expression="modalDisable.disable" hide-ok-expression="modalDisable.hide">
+            <watson-modal type="modalDisable.type" modal-title="modalDisable.modalTitle" action="myModalAction()" id="{{modalDisable.myModalId}}" ok-title="modalDisable.okTitle" cancel-title="modalDisable.cancelTitle" disable-ok-expression="modalDisable.disable" hide-ok-expression="modalDisable.hide">
                 <div><p>Are you sure you want to take this action?</p></div>
             </watson-modal>
 
             <button type="button" class="btn btn-default ibm-btn ibm-btn--primary" data-toggle="modal" data-target="#{{modalHide.myModalId}}">
                 Hidden Button modal
             </button>
-            <watson-modal type="modalHide.type" title="modalHide.title" action="myModalAction()" id="{{modalHide.myModalId}}" ok-title="modalHide.okTitle" cancel-title="modalHide.cancelTitle" disable-ok-expression="modalHide.disable" hide-ok-expression="modalHide.hide">
+            <watson-modal type="modalHide.type" modal-title="modalHide.modalTitle" action="myModalAction()" id="{{modalHide.myModalId}}" ok-title="modalHide.okTitle" cancel-title="modalHide.cancelTitle" disable-ok-expression="modalHide.disable" hide-ok-expression="modalHide.hide">
                 <div><p>Are you sure you want to take this action?</p></div>
             </watson-modal>
             <p><div ng-bind="modalClicked"></div></p>
@@ -86,7 +86,7 @@
             <h2>Modal Options</h2>
             <ul class="ibm-list">
                 <li class="ibm-list__item">type &lt;optional&gt;: The type of modal to display set to "success", "error", "warning", "default"</li>
-                <li class="ibm-list__item">title: The title that should be shown on the modal</li>
+                <li class="ibm-list__item">modalTitle: The title that should be shown on the modal</li>
                 <li class="ibm-list__item">id: The id for the modal (needed to be able to open it)</li>
                 <li class="ibm-list__item">action &lt;optional&gt;: The function to call when the modal is closed</li>
                 <li class="ibm-list__item">okTitle: The text to appear on the ok button</li>
@@ -142,7 +142,33 @@
         </div>
     </div>
 
-
+    <div id="Footer">
+        <div class="row">
+            <h1>Footer</h1>
+            <watson-footer></watson-footer>
+        </div>
+        <div class="row">
+            <h2>Footer Options</h2>
+            <ul class="ibm-list">
+                <li class="ibm-list__item">translations &lt;optional&gt;: a literal object map representing the link-texts as properties with corresponding translation strings, example usage below (in German),
+                    <ul class="ibm-list">
+                        <li class="ibm-list__item">contact: 'Kontakt'</li>
+                        <li class="ibm-list__item">privacy: 'Privatsphäre'</li>
+                        <li class="ibm-list__item">terms: 'Nutzungsbedingungen'</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <h2>Footer Sample Usage with Translations</h2>
+            <h3>HTML:</h3>
+            <p>Example below demonstrates how you would pass translations with an object literal</p>
+            <p><code>&lt;watson-footer translations="{contact : 'Kontakt', privacy : 'Privatsphäre', terms : 'Nutzungsbedingungen'}"&gt;&lt;/watson-footer&gt;</code></p>
+            <h3>Result:</h3>
+            <watson-footer translations="{contact : 'Kontakt', privacy : 'Privatsphäre', terms : 'Nutzungsbedingungen'}"></watson-footer>
+            <p>Note: Default texts are used when no translations are provided for any of the texts.</p>
+        </div>
+        <div class="row"></div>
+    </div>
 
 </div>
-

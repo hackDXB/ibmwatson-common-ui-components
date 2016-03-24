@@ -1,6 +1,6 @@
 {
   "name": "ibmwatson-common-ui-components",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A set of reusable angular directives. Should be used in any IBM Watson Tooling applications",
   "main": "dist/ibmwatson-common-ui-components.js",
   "keywords": [
@@ -30,7 +30,7 @@
     "angular-ui-router": "0.2.15",
     "bootstrap": "3.3.5",
     "angular-bootstrap": "0.14.3",
-    "ibmwatson-common-ui-style": "http://npmdepends.mybluemix.net/npms/ibmwatson-common-ui-style-0.0.7.tgz"
+    "ibmwatson-common-ui-style": "http://npmdepends.mybluemix.net/npms/ibmwatson-common-ui-style-0.0.9.tgz"
   },
   "devDependencies": {
     "angular-mocks": "1.4.8"
