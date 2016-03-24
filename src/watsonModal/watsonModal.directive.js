@@ -26,13 +26,13 @@ angular.module('ibmwatson-common-ui-components.watsonModal', [])
       transclude : true,
       scope : {
         type : '=?',
-        title : '=',
+        modalTitle : '=',
         modalId : '=',
         okTitle : '=',
         cancelTitle : '=?',
         action : '&',
         disableOkExpression : '=?',
-        hideOkExpression: '=?'
+        hideOkExpression : '=?'
       },
       link : function (scope, element) {
         scope.uniqueId = 'watsonModal' + uniqueId++;
